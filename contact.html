@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,10 +12,10 @@
         <p>Your World of Reading and Knowledge</p>
 
         <nav>
-            <a href="login.html">Login</a> |
             <a href="index.html">Home</a> |
             <a href="books.html">Books</a> |
-            <a href="contact.html">Contact Us</a>
+            <a href="contact.html">Contact Us</a> |
+            <a href="login.html">Logout</a>
         </nav>
     </header>
 
@@ -50,28 +50,24 @@
         <section>
             <h3>Send Us Your Comment</h3>
 
-            <form action="mailto:info@al-anfal-library.example"
-                  method="post"
-                  enctype="text/plain">
-
+            <form action="#" method="post">
                 <label for="visitor-name">Full Name:</label><br>
                 <input type="text" id="visitor-name"
-                       name="Name" required>
+                       name="full_name" required>
                 <br><br>
 
                 <label for="visitor-email">Your Email Address:</label><br>
                 <input type="email" id="visitor-email"
-                       name="Email" required>
+                       name="visitor_email" required>
                 <br><br>
 
                 <label for="comment">Your Comment:</label><br>
-                <textarea id="comment" name="Comment"
+                <textarea id="comment" name="comment"
                           rows="6" cols="35" required></textarea>
                 <br><br>
 
                 <button type="submit">Add Comment</button>
                 <button type="reset">Clear Form</button>
-
             </form>
         </section>
 
@@ -88,5 +84,3 @@
 
 </body>
 </html>
-
-
