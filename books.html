@@ -1,43 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Al-Anfal Library - Books</title>
-    <link rel="stylesheet" href="books.css">
 </head>
+
 <body>
 
+    <!-- Header -->
     <header>
         <h1>Al-Anfal Library</h1>
         <p>Your World of Reading and Knowledge</p>
 
         <nav>
-    <a href="home.html">Home</a>
-    <a href="books.html">Books</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="index.html">Logout</a>
-</nav>
+            <a href="index.html">Login</a> |
+            <a href="home.html">Home</a> |
+            <a href="books.html">Books</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
     </header>
 
     <hr>
 
     <main>
-        <h2>Our Book Collection</h2>
 
-        <p>
-            Discover books, learn new things,
-            and explore your favorite subjects.
-        </p>
-
+        <!-- Introduction -->
         <section>
-            <h3>Science and Technology</h3>
+            <h2>Our Book Collection</h2>
+
+            <p>
+                Explore our book collection and discover
+                new ideas, stories, and knowledge.
+            </p>
+
+            <form action="books.html" method="get">
+                <label for="search">Search for a book:</label>
+                <input
+                    type="search"
+                    id="search"
+                    name="search"
+                    placeholder="Enter book title or author">
+
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- Science Books -->
+        <section id="science">
+            <h3>1. Science Books</h3>
 
             <article>
                 <h4>Introduction to Statistics</h4>
                 <p>Category: Statistics</p>
                 <p>
-                    Learn the basics of statistics
+                    Description: Learn the basics of statistics
                     and data analysis.
                 </p>
             </article>
@@ -46,23 +66,33 @@
                 <h4>Computer Science Basics</h4>
                 <p>Category: Computer Science</p>
                 <p>
-                    Discover computers, information,
-                    and programming concepts.
+                    Description: An introduction to computers
+                    and programming.
+                </p>
+            </article>
+
+            <article>
+                <h4>Introduction to Artificial Intelligence</h4>
+                <p>Category: Artificial Intelligence</p>
+                <p>
+                    Description: Discover the basic concepts
+                    of artificial intelligence and smart systems.
                 </p>
             </article>
         </section>
 
         <hr>
 
-        <section>
-            <h3>Literature</h3>
+        <!-- Literature Books -->
+        <section id="literature">
+            <h3>2. Literature Books</h3>
 
             <article>
                 <h4>Short Stories</h4>
-                <p>Category: Stories</p>
+                <p>Category: Literature</p>
                 <p>
-                    Enjoy interesting stories
-                    and different literary ideas.
+                    Description: Enjoy a collection of
+                    interesting short stories.
                 </p>
             </article>
 
@@ -70,21 +100,31 @@
                 <h4>Poetry Collection</h4>
                 <p>Category: Poetry</p>
                 <p>
-                    Explore poems and creative writing.
+                    Description: Explore poems and literary expressions.
+                </p>
+            </article>
+
+            <article>
+                <h4>Novels and Adventures</h4>
+                <p>Category: Novels</p>
+                <p>
+                    Description: Discover exciting stories,
+                    adventures, and fictional worlds.
                 </p>
             </article>
         </section>
 
         <hr>
 
-        <section>
-            <h3>Education and Languages</h3>
+        <!-- Educational Books -->
+        <section id="education">
+            <h3>3. Educational Books</h3>
 
             <article>
                 <h4>Learning English</h4>
                 <p>Category: Languages</p>
                 <p>
-                    Improve your English language skills.
+                    Description: Improve your English language skills.
                 </p>
             </article>
 
@@ -92,31 +132,157 @@
                 <h4>Study Skills</h4>
                 <p>Category: Education</p>
                 <p>
-                    Learn how to organize your studies
-                    and improve your learning.
+                    Description: Learn useful methods for
+                    organizing your studies.
                 </p>
             </article>
         </section>
 
         <hr>
 
-        <section>
-            <h3>Special Student Offer</h3>
+        <!-- Student Corner -->
+        <section id="student-corner">
+            <h3>4. Student Corner</h3>
+
+            <p>
+                A special section for students who want to
+                improve their knowledge and academic skills.
+            </p>
+
+            <article>
+                <h4>Programming Resources</h4>
+                <p>
+                    Learn about programming languages,
+                    algorithms, and software development.
+                </p>
+            </article>
+
+            <article>
+                <h4>University Study Resources</h4>
+                <p>
+                    Discover study guides, revision materials,
+                    and useful academic references.
+                </p>
+            </article>
+
+            <article>
+                <h4>Computer and Technology</h4>
+                <p>
+                    Explore databases, web development,
+                    networking, and information technology.
+                </p>
+            </article>
+        </section>
+
+        <hr>
+
+        <!-- PDF Books -->
+        <section id="pdf-books">
+            <h3>5. Free Digital Books</h3>
+
+            <p>
+                Explore books available for online reading
+                and download from legal digital libraries.
+            </p>
+
+            <article>
+                <h4>Alice's Adventures in Wonderland</h4>
+                <p>Author: Lewis Carroll</p>
+                <p>Category: Literature and Fantasy</p>
+
+                <p>
+                    Read or download this book from Project Gutenberg.
+                </p>
+
+                <a href="https://www.gutenberg.org/ebooks/11">
+                    Read or Download
+                </a>
+            </article>
+
+            <article>
+                <h4>The Adventures of Sherlock Holmes</h4>
+                <p>Author: Arthur Conan Doyle</p>
+                <p>Category: Mystery and Fiction</p>
+
+                <p>
+                    Explore the available reading and download formats.
+                </p>
+
+                <a href="https://www.gutenberg.org/ebooks/1661">
+                    Read or Download
+                </a>
+            </article>
+        </section>
+
+        <hr>
+
+        <!-- Favorites -->
+        <section id="favorites">
+            <h3>6. My Favorite Books</h3>
+
+            <p>
+                This section is for books you love and want
+                to read again.
+            </p>
+
+            <p>
+                Your favorite books will appear here after
+                the favorites feature is added.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- Reading List -->
+        <section id="reading-list">
+            <h3>7. My Reading List</h3>
+
+            <p>
+                Keep track of the books you plan to read.
+            </p>
+
+            <ol>
+                <li>Book One</li>
+                <li>Book Two</li>
+                <li>Book Three</li>
+            </ol>
+
+            <p>
+                This is a sample list. Saving and editing
+                reading lists will be added in a later stage.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- Student Offer -->
+        <section id="student-offer">
+            <h3>8. Student Offer</h3>
+
             <p>
                 Students can receive a 30% discount
                 on selected books.
             </p>
         </section>
 
-        <p><a href="index.html">Back to Home</a></p>
+        <hr>
+
+        <!-- Navigation Links -->
+        <section>
+            <p><a href="home.html">Back to Home</a></p>
+            <p><a href="contact.html">Contact Us</a></p>
+        </section>
+
     </main>
 
     <hr>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
     </footer>
 
 </body>
+
 </html>
                     
