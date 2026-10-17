@@ -1,96 +1,280 @@
-
-/* Al-Anfal Library Login Page */
-
 * {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: #f0f5f1;
-    color: #26382f;
-    line-height: 1.6;
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #26392f;
+    background-color: #f7f4ec;
+    line-height: 1.7;
+}
+
+/* Hide default horizontal lines */
+hr {
+    display: none;
+}
+
+/* 2. Library Header */
 header {
-    background-color: #245b45;
-    color: white;
+    background: linear-gradient(135deg, #123c30, #20634b);
+    color: #ffffff;
     text-align: center;
-    padding: 25px;
-    border-radius: 12px;
+    padding: 42px 20px 38px;
+    border-bottom: 4px solid #d8b56d;
 }
 
 header h1 {
     margin: 0;
-    font-size: 32px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(30px, 5vw, 46px);
+    letter-spacing: 1px;
 }
 
 header p {
-    margin-bottom: 0;
-}
-
-main {
-    max-width: 650px;
-    margin: 30px auto;
-}
-
-section {
-    background-color: white;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 12px;
-    border: 1px solid #dce7df;
-}
-
-h2, h3 {
-    color: #245b45;
-}
-
-label {
-    font-weight: bold;
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #b9c9bf;
-    border-radius: 7px;
+    margin: 10px 0 0;
+    color: #e8dfc8;
     font-size: 16px;
+    letter-spacing: 0.5px;
 }
 
+/* 3. Main Layout */
+main {
+    width: 100%;
+    max-width: 780px;
+    margin: 45px auto;
+    padding: 0 20px;
+}
+
+/* 4. Login Card */
+#login {
+    background-color: #ffffff;
+    max-width: 520px;
+    margin: 0 auto 35px;
+    padding: 35px;
+    border: 1px solid #e7dfcf;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(27, 62, 46, 0.09);
+}
+
+#login h2 {
+    color: #174b39;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 27px;
+    text-align: center;
+    margin: 0 0 8px;
+}
+
+#login > p {
+    color: #777f77;
+    text-align: center;
+    margin: 0 0 25px;
+}
+
+#login h3 {
+    color: #274c3b;
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+/* 5. Form Labels */
+label {
+    display: inline-block;
+    color: #34483c;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+/* 6. Input Fields */
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 13px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #26392f;
+    background-color: #fcfbf8;
+    border: 1px solid #d8dfd8;
+    border-radius: 9px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #267353;
+    box-shadow: 0 0 0 3px rgba(38, 115, 83, 0.12);
+    background-color: #ffffff;
+}
+
+/* Remove extra blank lines in the form */
+#login form br {
+    display: none;
+}
+
+#login form label {
+    margin-top: 12px;
+}
+
+/* 7. Forgot Password Link */
+#login form p {
+    text-align: right;
+    margin: 13px 0 20px;
+    font-size: 14px;
+}
+
+a {
+    color: #216849;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #b18a42;
+    text-decoration: underline;
+}
+
+/* 8. Buttons */
 button {
     width: 100%;
-    padding: 12px;
-    background-color: #245b45;
-    color: white;
+    padding: 13px 20px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #174b39, #287354);
     border: none;
-    border-radius: 7px;
+    border-radius: 9px;
+    font-family: inherit;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 button:hover {
-    background-color: #173f30;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(23, 75, 57, 0.2);
 }
 
-footer {
+/* 9. Create Account Section */
+#create-account {
     text-align: center;
-    color: #52665a;
-    padding: 15px;
+    padding: 27px 20px;
+    margin: 0 auto 30px;
+    background-color: #eee8d9;
+    border: 1px solid #e4d7bb;
+    border-radius: 15px;
 }
 
+#create-account h3 {
+    margin: 0 0 8px;
+    color: #174b39;
+    font-size: 21px;
+}
+
+#create-account p {
+    margin: 0 0 18px;
+    color: #646d64;
+}
+
+#create-account a {
+    display: inline-block;
+    padding: 10px 22px;
+    background-color: #ffffff;
+    color: #174b39;
+    border: 1px solid #b9a16b;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+#create-account a:hover {
+    background-color: #174b39;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* 10. Forgot Password Section */
+#forgot-password {
+    text-align: center;
+    padding: 25px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 14px;
+    border-left: 4px solid #c9a45e;
+}
+
+#forgot-password h2 {
+    color: #174b39;
+    font-size: 22px;
+    margin-top: 0;
+}
+
+#forgot-password p {
+    color: #687168;
+}
+
+#forgot-password a {
+    font-weight: 600;
+}
+
+/* 11. Footer */
+footer {
+    padding: 22px 15px;
+    background-color: #123c30;
+    color: #e8dfc8;
+    text-align: center;
+    font-size: 13px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* 12. Responsive Design */
 @media (max-width: 600px) {
-    body {
-        padding: 12px;
+    header {
+        padding: 30px 15px;
     }
 
-    header h1 {
-        font-size: 26px;
+    header p {
+        font-size: 14px;
     }
 
-    section {
-        padding: 18px;
+    main {
+        margin: 25px auto;
+        padding: 0 14px;
+    }
+
+    #login {
+        padding: 25px 20px;
+        border-radius: 14px;
+    }
+
+    #login h2 {
+        font-size: 23px;
+    }
+
+    #create-account {
+        padding: 24px 15px;
+    }
+
+    #forgot-password {
+        padding: 20px 16px;
+    }
+}
+
+/* 13. Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
     }
 }
