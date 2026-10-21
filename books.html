@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Al-Anfal Library - Books</title>
-    <link rel="stylesheet" href="books.css">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -16,20 +18,18 @@
         <p>Your World of Reading and Knowledge</p>
 
         <nav>
-            <a href="index.html">Login</a> |
-            <a href="home.html">Home</a> |
-            <a href="books.html">Books</a> |
+            <a href="index.html">Login</a>
+            <a href="home.html">Home</a>
+            <a href="books.html">Books</a>
             <a href="contact.html">Contact Us</a>
         </nav>
     </header>
 
-    <hr>
-
     <main>
 
         <!-- Introduction -->
-        <section>
-            <h2>Our Book Collection</h2>
+        <section class="text-center">
+            <h2>Our Book Collection | مجموعة كتبنا</h2>
 
             <p>
                 Explore our book collection and discover
@@ -38,6 +38,7 @@
 
             <form action="books.html" method="get">
                 <label for="search">Search for a book:</label>
+
                 <input
                     type="search"
                     id="search"
@@ -48,242 +49,311 @@
             </form>
         </section>
 
-        <hr>
-
         <!-- Science Books -->
         <section id="science">
-            <h3>1. Science Books</h3>
 
-            <article>
-                <h4>Introduction to Statistics</h4>
-                <p>Category: Statistics</p>
-                <p>
-                    Description: Learn the basics of statistics
-                    and data analysis.
-                </p>
-            </article>
+            <h2>1. Science Books | كتب العلوم</h2>
 
-            <article>
-                <h4>Computer Science Basics</h4>
-                <p>Category: Computer Science</p>
-                <p>
-                    Description: An introduction to computers
-                    and programming.
-                </p>
-            </article>
+            <div class="books-grid">
 
-            <article>
-                <h4>Introduction to Artificial Intelligence</h4>
-                <p>Category: Artificial Intelligence</p>
-                <p>
-                    Description: Discover the basic concepts
-                    of artificial intelligence and smart systems.
-                </p>
-            </article>
+                <article class="book-card">
+                    <div class="book-cover">📘</div>
+
+                    <div class="book-info">
+                        <h3>Introduction to Statistics</h3>
+                        <p>Category: Statistics</p>
+                        <p>Learn the basics of statistics and data analysis.</p>
+                        <p class="price">5000 SDG</p>
+                        <a href="#student-offer" class="btn">View Details</a>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-cover">💻</div>
+
+                    <div class="book-info">
+                        <h3>Computer Science Basics</h3>
+                        <p>Category: Computer Science</p>
+                        <p>An introduction to computers and programming.</p>
+                        <p class="price">6000 SDG</p>
+                        <a href="#student-offer" class="btn">View Details</a>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-cover">🤖</div>
+
+                    <div class="book-info">
+                        <h3>Introduction to Artificial Intelligence</h3>
+                        <p>Category: Artificial Intelligence</p>
+                        <p>Discover AI concepts and smart systems.</p>
+                        <p class="price">7000 SDG</p>
+                        <a href="#student-offer" class="btn">View Details</a>
+                    </div>
+                </article>
+
+            </div>
         </section>
-
-        <hr>
 
         <!-- Literature Books -->
         <section id="literature">
-            <h3>2. Literature Books</h3>
 
-            <article>
-                <h4>Short Stories</h4>
-                <p>Category: Literature</p>
-                <p>
-                    Description: Enjoy a collection of
-                    interesting short stories.
-                </p>
-            </article>
+            <h2>2. Literature Books | الأدب والروايات</h2>
 
-            <article>
-                <h4>Poetry Collection</h4>
-                <p>Category: Poetry</p>
-                <p>
-                    Description: Explore poems and literary expressions.
-                </p>
-            </article>
+            <div class="books-grid">
 
-            <article>
-                <h4>Novels and Adventures</h4>
-                <p>Category: Novels</p>
-                <p>
-                    Description: Discover exciting stories,
-                    adventures, and fictional worlds.
-                </p>
-            </article>
+                <article class="book-card">
+                    <div class="book-cover">📖</div>
+
+                    <div class="book-info">
+                        <h3>Short Stories</h3>
+                        <p>Category: Literature</p>
+                        <p>Enjoy a collection of interesting short stories.</p>
+                        <p class="price">3500 SDG</p>
+                        <a href="#pdf-books" class="btn">Explore Books</a>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-cover">✒️</div>
+
+                    <div class="book-info">
+                        <h3>Poetry Collection</h3>
+                        <p>Category: Poetry</p>
+                        <p>Explore poems and literary expressions.</p>
+                        <p class="price">4000 SDG</p>
+                        <a href="#pdf-books" class="btn">Explore Books</a>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-cover">📚</div>
+
+                    <div class="book-info">
+                        <h3>Novels and Adventures</h3>
+                        <p>Category: Novels</p>
+                        <p>Discover exciting stories and fictional worlds.</p>
+                        <p class="price">5000 SDG</p>
+                        <a href="#pdf-books" class="btn">Explore Books</a>
+                    </div>
+                </article>
+
+            </div>
         </section>
-
-        <hr>
 
         <!-- Educational Books -->
         <section id="education">
-            <h3>3. Educational Books</h3>
 
-            <article>
-                <h4>Learning English</h4>
-                <p>Category: Languages</p>
-                <p>
-                    Description: Improve your English language skills.
-                </p>
-            </article>
+            <h2>3. Educational Books | الكتب التعليمية</h2>
 
-            <article>
-                <h4>Study Skills</h4>
-                <p>Category: Education</p>
-                <p>
-                    Description: Learn useful methods for
-                    organizing your studies.
-                </p>
-            </article>
+            <div class="books-grid">
+
+                <article class="book-card">
+                    <div class="book-cover">🔤</div>
+
+                    <div class="book-info">
+                        <h3>Learning English</h3>
+                        <p>Category: Languages</p>
+                        <p>Improve your English language skills.</p>
+                        <p class="price">4500 SDG</p>
+                        <a href="#student-corner" class="btn">View Details</a>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-cover">📝</div>
+
+                    <div class="book-info">
+                        <h3>Study Skills</h3>
+                        <p>Category: Education</p>
+                        <p>Learn useful methods for organizing your studies.</p>
+                        <p class="price">3000 SDG</p>
+                        <a href="#student-corner" class="btn">View Details</a>
+                    </div>
+                </article>
+
+            </div>
         </section>
-
-        <hr>
 
         <!-- Student Corner -->
         <section id="student-corner">
-            <h3>4. Student Corner</h3>
+
+            <h2>4. Student Corner | ركن الطالب</h2>
 
             <p>
                 A special section for students who want to
                 improve their knowledge and academic skills.
             </p>
 
-            <article>
-                <h4>Programming Resources</h4>
-                <p>
-                    Learn about programming languages,
-                    algorithms, and software development.
-                </p>
-            </article>
+            <div class="books-grid">
 
-            <article>
-                <h4>University Study Resources</h4>
-                <p>
-                    Discover study guides, revision materials,
-                    and useful academic references.
-                </p>
-            </article>
+                <article class="book-card">
+                    <div class="book-cover">👨‍💻</div>
 
-            <article>
-                <h4>Computer and Technology</h4>
-                <p>
-                    Explore databases, web development,
-                    networking, and information technology.
-                </p>
-            </article>
+                    <div class="book-info">
+                        <h3>Programming Resources</h3>
+                        <p>Learn about programming languages,
+                            algorithms, and software development.</p>
+                        <a href="#pdf-books" class="btn">Explore Resources</a>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-cover">🎓</div>
+
+                    <div class="book-info">
+                        <h3>University Study Resources</h3>
+                        <p>Discover study guides, revision materials,
+                            and useful academic references.</p>
+                        <a href="#reading-list" class="btn">Explore Resources</a>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-cover">🖥️</div>
+
+                    <div class="book-info">
+                        <h3>Computer and Technology</h3>
+                        <p>Explore databases, web development,
+                            networking, and information technology.</p>
+                        <a href="#pdf-books" class="btn">Explore Resources</a>
+                    </div>
+                </article>
+
+            </div>
         </section>
-
-        <hr>
 
         <!-- PDF Books -->
         <section id="pdf-books">
-            <h3>5. Free Digital Books</h3>
+
+            <h2>5. Free Digital Books | الكتب الإلكترونية المجانية</h2>
 
             <p>
                 Explore books available for online reading
                 and download from legal digital libraries.
             </p>
 
-            <article>
-                <h4>Alice's Adventures in Wonderland</h4>
-                <p>Author: Lewis Carroll</p>
-                <p>Category: Literature and Fantasy</p>
+            <div class="books-grid">
 
-                <p>
-                    Read or download this book from Project Gutenberg.
-                </p>
+                <article class="book-card">
+                    <div class="book-cover">🏰</div>
 
-                <a href="https://www.gutenberg.org/ebooks/11">
-                    Read or Download
-                </a>
-            </article>
+                    <div class="book-info">
+                        <h3>Alice's Adventures in Wonderland</h3>
+                        <p>Author: Lewis Carroll</p>
+                        <p>Category: Literature and Fantasy</p>
 
-            <article>
-                <h4>The Adventures of Sherlock Holmes</h4>
-                <p>Author: Arthur Conan Doyle</p>
-                <p>Category: Mystery and Fiction</p>
+                        <a
+                            href="https://www.gutenberg.org/ebooks/11"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn">
+                            Read or Download
+                        </a>
+                    </div>
+                </article>
 
-                <p>
-                    Explore the available reading and download formats.
-                </p>
+                <article class="book-card">
+                    <div class="book-cover">🔎</div>
 
-                <a href="https://www.gutenberg.org/ebooks/1661">
-                    Read or Download
-                </a>
-            </article>
+                    <div class="book-info">
+                        <h3>The Adventures of Sherlock Holmes</h3>
+                        <p>Author: Arthur Conan Doyle</p>
+                        <p>Category: Mystery and Fiction</p>
+
+                        <a
+                            href="https://www.gutenberg.org/ebooks/1661"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn">
+                            Read or Download
+                        </a>
+                    </div>
+                </article>
+
+            </div>
         </section>
-
-        <hr>
 
         <!-- Favorites -->
         <section id="favorites">
-            <h3>6. My Favorite Books</h3>
 
-            <p>
-                This section is for books you love and want
-                to read again.
-            </p>
+            <h2>6. My Favorite Books | كتبي المفضلة</h2>
 
-            <p>
-                Your favorite books will appear here after
-                the favorites feature is added.
-            </p>
+            <div class="card text-center">
+                <div class="book-cover">💚</div>
+
+                <h3>Your Favorite Books</h3>
+
+                <p>
+                    This section is for books you love and want
+                    to read again.
+                </p>
+
+                <p>
+                    Your favorite books will appear here after
+                    the favorites feature is added.
+                </p>
+            </div>
         </section>
-
-        <hr>
 
         <!-- Reading List -->
         <section id="reading-list">
-            <h3>7. My Reading List</h3>
 
-            <p>
-                Keep track of the books you plan to read.
-            </p>
+            <h2>7. My Reading List | قائمة القراءة</h2>
 
-            <ol>
-                <li>Book One</li>
-                <li>Book Two</li>
-                <li>Book Three</li>
-            </ol>
+            <div class="card">
+                <h3>Books I Plan to Read</h3>
 
-            <p>
-                This is a sample list. Saving and editing
-                reading lists will be added in a later stage.
-            </p>
+                <ol>
+                    <li>Introduction to Computer Science</li>
+                    <li>Learning English</li>
+                    <li>Novels and Adventures</li>
+                </ol>
+
+                <p>
+                    This is a sample reading list.
+                    Saving and editing the list will be added later.
+                </p>
+            </div>
         </section>
-
-        <hr>
 
         <!-- Student Offer -->
         <section id="student-offer">
-            <h3>8. Student Offer</h3>
 
-            <p>
-                Students can receive a 30% discount
-                on selected books.
-            </p>
+            <h2>8. Student Offer | عروض الطلاب</h2>
+
+            <div class="hero">
+                <h2>Special Student Discount 🎓</h2>
+
+                <p>
+                    Students can receive a 30% discount
+                    on selected books.
+                </p>
+
+                <p>
+                    Learn more about our available books
+                    and educational resources.
+                </p>
+
+                <a href="contact.html" class="btn btn-gold">
+                    Contact Us
+                </a>
+            </div>
         </section>
 
-        <hr>
-
         <!-- Navigation Links -->
-        <section>
-            <p><a href="home.html">Back to Home</a></p>
-            <p><a href="contact.html">Contact Us</a></p>
+        <section class="text-center">
+            <a href="home.html" class="btn">Back to Home</a>
+            <a href="contact.html" class="btn">Contact Us</a>
         </section>
 
     </main>
 
-    <hr>
-
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
+        <p>Your World of Reading and Knowledge</p>
     </footer>
 
 </body>
-
 </html>
-                    
