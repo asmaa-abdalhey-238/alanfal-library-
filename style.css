@@ -655,3 +655,514 @@ footer a:hover {
         animation-duration: 0.01ms !important;
     }
 }
+:root {
+    --green-dark: #203b2d;
+    --green: #355c43;
+    --green-light: #edf1e8;
+    --gold: #c5a15b;
+    --gold-light: #f3e8cf;
+    --cream: #fbf8f0;
+    --white: #ffffff;
+    --text: #343c34;
+    --muted: #777d73;
+    --border: #e9e3d6;
+    --shadow: 0 12px 35px rgba(32, 59, 45, 0.09);
+    --radius: 18px;
+}
+
+/* Overall appearance */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 25px;
+}
+
+body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    line-height: 1.85;
+}
+
+main {
+    width: min(92%, 1320px);
+    margin-inline: auto;
+    padding-block: 25px;
+}
+
+h1, h2, h3, h4 {
+    color: var(--green-dark);
+    letter-spacing: 0.1px;
+}
+
+p {
+    line-height: 1.9;
+}
+
+/* Premium header */
+header {
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 27px 5% 20px;
+    border-bottom: 3px solid var(--gold);
+    box-shadow: 0 5px 20px rgba(32, 59, 45, 0.12);
+}
+
+header h1 {
+    color: var(--gold-light);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    letter-spacing: 0.5px;
+}
+
+header p {
+    color: #f3eee2;
+}
+
+/* Elegant navigation */
+header nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 22px;
+}
+
+header nav a {
+    padding: 9px 17px;
+    border-radius: 30px;
+    color: #fffdf6;
+    font-size: 0.97rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    transition: background 0.25s, color 0.25s,
+                transform 0.25s;
+}
+
+header nav a:hover {
+    color: var(--green-dark);
+    background: var(--gold-light);
+    transform: translateY(-2px);
+}
+
+/* Logout at the end of the HTML navigation */
+header nav a.logout-link {
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    margin-inline-start: 12px;
+}
+
+header nav a.logout-link:hover {
+    background: #a94742;
+    border-color: #a94742;
+    color: white;
+}
+
+/* Main hero image
+   HTML class: library-banner */
+.library-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(35px, 7vw, 85px) 6%;
+    margin-block: 25px;
+    border: 1px solid rgba(197, 161, 91, 0.5);
+    border-radius: 24px;
+    text-align: center;
+    color: white;
+    background:
+        linear-gradient(
+            110deg,
+            rgba(24, 49, 35, 0.90),
+            rgba(24, 49, 35, 0.48)
+        ),
+        url("images/library-banner.jpg") center / cover no-repeat;
+    box-shadow: var(--shadow);
+}
+
+.library-banner h1,
+.library-banner h2,
+.library-banner h3,
+.library-banner p {
+    color: white;
+    max-width: 800px;
+}
+
+.library-banner h1 {
+    font-size: clamp(2rem, 5vw, 3.6rem);
+}
+
+.library-banner p {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    margin: 10px auto 20px;
+}
+
+/* Existing hero and intro sections */
+.hero,
+.welcome,
+.intro {
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: clamp(30px, 5vw, 65px);
+}
+
+.hero h1,
+.hero h2,
+.welcome h1,
+.welcome h2,
+.intro h1,
+.intro h2 {
+    color: var(--white);
+}
+
+/* Elegant section headings */
+main > section > h2,
+main > section > h3 {
+    position: relative;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+}
+
+main > section > h2::after,
+main > section > h3::after {
+    content: "";
+    display: block;
+    width: 58px;
+    height: 3px;
+    margin-top: 9px;
+    border-radius: 3px;
+    background: var(--gold);
+}
+
+/* Centered headings */
+main > section.text-center > h2::after {
+    margin-inline: auto;
+}
+
+/* Book cards */
+.books-grid,
+.book-list,
+.cards,
+.features,
+.categories,
+.services-grid {
+    gap: clamp(15px, 2vw, 27px);
+    align-items: stretch;
+    margin-block: 25px;
+}
+
+.book-card,
+.card,
+.feature-card,
+.category-card,
+.contact-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 5px 20px rgba(32, 59, 45, 0.055);
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+}
+
+.book-card:hover,
+.card:hover,
+.feature-card:hover,
+.category-card:hover,
+.contact-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(197, 161, 91, 0.65);
+    box-shadow: var(--shadow);
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    padding: 17px;
+    text-align: center;
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 8px;
+}
+
+.book-info h3 {
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+}
+
+.book-info p {
+    color: var(--muted);
+    margin-bottom: 5px;
+}
+
+.book-info .btn {
+    margin-top: auto;
+}
+
+/* Book cover area */
+.book-cover {
+    width: 100%;
+    height: 245px;
+    min-height: 0;
+    padding: 0;
+    margin-bottom: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 13px;
+    color: var(--green-dark);
+    font-size: 3rem;
+    background: linear-gradient(
+        145deg,
+        #f1ead9,
+        #e7eddf
+    );
+}
+
+.book-cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    transition: transform 0.35s ease;
+}
+
+.book-card:hover .book-cover img {
+    transform: scale(1.04);
+}
+
+/* Book prices */
+.price {
+    color: var(--green) !important;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+/* Premium buttons */
+button,
+.btn,
+.button,
+input[type="submit"],
+input[type="button"] {
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    padding: 11px 20px;
+    background: var(--green);
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    transition: 0.25s ease;
+}
+
+button:hover,
+.btn:hover,
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-gold {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--green-dark);
+}
+
+.btn-gold:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    color: var(--green-dark);
+}
+
+/* Search, login, registration and contact forms */
+form {
+    background: white;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+textarea,
+select {
+    border: 1px solid #dedfd4;
+    border-radius: 10px;
+    background: #fffefa;
+    padding: 12px 14px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--gold);
+    outline: 2px solid rgba(197, 161, 91, 0.18);
+}
+
+/* Logo image, if you add one */
+.logo {
+    width: 76px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Footer */
+footer {
+    margin-top: 45px;
+    padding: 32px 5%;
+    border-top: 3px solid var(--gold);
+    background: var(--green-dark);
+    color: #f8f3e7;
+    text-align: center;
+}
+
+footer p {
+    color: #f8f3e7;
+    margin-bottom: 5px;
+}
+
+footer a {
+    color: var(--gold-light);
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .books-grid,
+    .book-list,
+    .cards,
+    .features,
+    .categories,
+    .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    main {
+        width: 94%;
+    }
+
+    .library-banner {
+        min-height: 290px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    html {
+        font-size: 15px;
+    }
+
+    main {
+        width: 94%;
+        padding-top: 10px;
+    }
+
+    header {
+        padding: 20px 4% 16px;
+    }
+
+    header nav {
+        gap: 5px;
+    }
+
+    header nav a {
+        padding: 7px 10px;
+        font-size: 0.88rem;
+    }
+
+    header nav a.logout-link {
+        margin-inline-start: 0;
+    }
+
+    .books-grid,
+    .book-list,
+    .cards,
+    .features,
+    .categories,
+    .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .book-card {
+        padding: 15px;
+    }
+
+    .book-cover {
+        height: 260px;
+    }
+
+    .library-banner {
+        min-height: 260px;
+        padding: 35px 18px;
+        border-radius: 16px;
+    }
+
+    .hero,
+    .welcome,
+    .intro {
+        padding: 30px 18px;
+    }
+
+    form {
+        padding: 20px 16px;
+    }
+
+    footer {
+        margin-top: 25px;
+        padding: 25px 15px;
+    }
+}
+
+/* Large laptops and TVs */
+@media (min-width: 1600px) {
+    html {
+        font-size: 19px;
+    }
+
+    main {
+        width: min(90%, 1700px);
+    }
+
+    .books-grid,
+    .book-list,
+    .cards,
+    .features,
+    .categories,
+    .services-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 28px;
+    }
+
+    .book-cover {
+        height: 300px;
+    }
+
+    .library-banner {
+        min-height: 450px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
