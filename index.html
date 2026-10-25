@@ -4,98 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Al-Anfal Library - Login</title>
-    <!-- Connect the existing CSS file -->
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="css/style.css">
+</head><body><header class="login-header">
+    <div class="logo">📚</div>
+    <h1>Al-Anfal Library</h1>
+    <p>Your World of Reading and Knowledge</p>
+</header>
 
-<body>
+<main class="login-container">
 
-    <header>
-        <h1>Al-Anfal Library</h1>
-        <p>Your World of Reading and Knowledge</p>
-    </header>
+    <section class="login-card" id="login">
 
-    <hr>
+        <div class="welcome-icon">💜</div>
 
-    <main>
+        <h2>Welcome Back!</h2>
+        <p class="description">
+            Login to your account and continue your reading journey.
+        </p>
 
-        <!-- Login Section -->
-        <section id="login">
-            <h2>Welcome to Al-Anfal Library</h2>
-            <p>Please login to access the library.</p>
+        <form action="home.html" method="get">
 
-            <h3>Login to Your Account</h3>
-
-            <form action="home.html" method="get">
-
-                <label for="login-email">Email Address:</label><br>
+            <div class="form-group">
+                <label for="login-email">Email Address</label>
                 <input
                     type="email"
                     id="login-email"
                     name="email"
-                    required
-                >
-                <br><br>
+                    placeholder="Enter your email"
+                    required>
 
-                <label for="login-password">Password:</label><br>
+            </div>
+
+            <div class="form-group">
+                <label for="login-password">Password</label>
                 <input
                     type="password"
                     id="login-password"
                     name="password"
-                    required
-                >
-                <br>
+                    placeholder="Enter your password"
+                    required>
+                
+            </div>
 
-                <p>
-                    <a href="#forgot-password">
-                        Forgot your password?
-                    </a>
-                </p>
+            <div class="forgot-link">
+                <a href="#forgot-password">Forgot your password?</a>
+            </div>
 
-                <button type="submit">Login</button>
+            <button type="submit" class="login-button">
+                Login to Your Account
+            </button>
 
-            </form>
-        </section>
+        </form>
 
-        <hr>
+        <div class="divider">
+            <span>OR</span>
+        </div>
 
-        <!-- Create Account Link -->
-        <section id="create-account">
-            <h3>New to Al-Anfal Library?</h3>
-
-            <p>
-                Create a new account to join our library.
-            </p>
-
-            <a href="create-account.html">
+        <div class="signup-section">
+            <p>New to Al-Anfal Library?</p>
+            <a href="create-account.html" class="signup-button">
                 Create a New Account
             </a>
-        </section>
+        </div>
 
-        <hr>
+    </section>
 
-        <!-- Forgot Password Section -->
-        <section id="forgot-password">
-            <h2>Forgot Your Password?</h2>
+    <section class="forgot-card" id="forgot-password">
+        <h3>Forgot Your Password?</h3>
+        <p>
+            Please contact the library administrator
+            for help resetting your password.
+        </p>
+        <a href="#login">Back to Login</a>
+    </section>
 
-            <p>
-                If you have forgotten your password,
-                please contact the library administrator
-                for help resetting it.
-            </p>
+</main>
 
-            <p>
-                <a href="#login">Back to Login</a>
-            </p>
-        </section>
-
-    </main>
-
-    <hr>
-
-    <footer>
-        <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
-    </footer>
+<footer class="login-footer">
+    <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
+    <p>Read More. Learn More. Discover More.</p>
+</footer>
 
 </body>
 </html>
