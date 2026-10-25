@@ -3,29 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Al-Anfal Library - Home</title>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
     <header>
         <h1>Al-Anfal Library</h1>
         <p>Your World of Reading and Knowledge</p>
-<nav>
-    <a href="home.html">Home</a>
-    <a href="books.html">Books</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="index.html" class="logout-link">Logout</a>
-
-</nav>
     </header>
 
-    <hr>
+    <nav>
+        <a href="home.html" class="active">Home</a>
+        <a href="books.html">Books</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="index.html" class="logout-link">Logout</a>
+    </nav>
 
     <main>
-        <section>
+
+        <!-- Library Banner -->
+        <section class="library-banner">
             <h2>Welcome to Al-Anfal Library</h2>
-            <h3>Discover a World of Books</h3>
+
+            <p>
+                Discover a World of Books, Knowledge,
+                Science and Imagination.
+            </p>
+
+            <a href="books.html" class="btn btn-gold">
+                Explore Our Books
+            </a>
+        </section>
+
+        <!-- Introduction -->
+        <section class="section">
+            <h2 class="section-title">About Our Library</h2>
 
             <p>
                 Al-Anfal Library is an electronic library
@@ -37,44 +53,113 @@
                 Our goal is to make knowledge accessible
                 and encourage everyone to enjoy reading.
             </p>
-
-            <p>
-                <a href="books.html">Explore Our Books</a>
-            </p>
         </section>
 
-        <hr>
+        <!-- Services -->
+        <section class="section">
+            <h2 class="section-title">Our Services</h2>
 
-        <section>
-            <h2>Our Services</h2>
+            <div class="cards-grid">
 
-            <h3>Book Collection</h3>
-            <p>Explore books from different categories.</p>
+                <div class="info-card">
+                    <h3>Book Collection</h3>
+                    <p>
+                        Explore books from science,
+                        technology, literature and more.
+                    </p>
+                </div>
 
-            <h3>Easy Access</h3>
-            <p>Browse the library content easily.</p>
+                <div class="info-card">
+                    <h3>Easy Access</h3>
+                    <p>
+                        Browse the library content
+                        easily from your device.
+                    </p>
+                </div>
 
-            <h3>Reader Feedback</h3>
-            <p>Share your comments and suggestions with us.</p>
-            <p><a href="contact.html">Contact Us</a></p>
+                <div class="info-card">
+                    <h3>Reader Feedback</h3>
+                    <p>
+                        Share your comments and suggestions
+                        with our library.
+                    </p>
+
+                    <a href="contact.html" class="btn">
+                        Contact Us
+                    </a>
+                </div>
+
+            </div>
         </section>
 
-        <hr>
+        <!-- Featured Books -->
+        <section class="section">
+            <h2 class="section-title">Explore Our Categories</h2>
 
-        <section>
-            <h2>About Al-Anfal Library</h2>
+            <div class="cards-grid">
 
-            <p>
-                We aim to support education, learning,
-                reading, and knowledge sharing.
-            </p>
+                <div class="book-card">
+                    <img
+                        src="css/statistics.jpg"
+                        alt="Statistics Book"
+                    >
+
+                    <div class="book-info">
+                        <h3>Statistics</h3>
+                        <p>
+                            Discover books about statistics
+                            and data analysis.
+                        </p>
+                        <a href="books.html" class="btn">
+                            View Books
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <img
+                        src="css/computer.jpg"
+                        alt="Computer Science Book"
+                    >
+
+                    <div class="book-info">
+                        <h3>Computer Science</h3>
+                        <p>
+                            Explore programming and
+                            computer technology.
+                        </p>
+                        <a href="books.html" class="btn">
+                            View Books
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <img
+                        src="css/novel.jpg"
+                        alt="Novels and Literature"
+                    >
+
+                    <div class="book-info">
+                        <h3>Novels and Literature</h3>
+                        <p>
+                            Enjoy stories, novels
+                            and wonderful adventures.
+                        </p>
+                        <a href="books.html" class="btn">
+                            View Books
+                        </a>
+                    </div>
+                </div>
+
+            </div>
         </section>
+
     </main>
-
-    <hr>
 
     <footer>
         <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
+        <p>Your World of Reading and Knowledge</p>
     </footer>
 
 </body>
