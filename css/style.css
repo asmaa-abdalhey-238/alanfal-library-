@@ -652,6 +652,29 @@ button:focus-visible {
 outline: 3px solid var(--gold);
 outline-offset: 3px;
     }
+/* Books Page Introduction */
+body > main > section:first-child {
+background: linear-gradient(135deg, #F0E8FA, #FFFFFF);
+border: 1px solid #E4D8F0;
+border-radius: 18px;
+padding: 28px 20px;
+text-align: center;
+box-shadow: 0 6px 20px rgba(67, 33, 95, 0.08);
+}
+
+body > main > section:first-child h2 {
+color: #43215F;
+margin-bottom: 12px;
+}
+
+body > main > section:first-child form {
+max-width: 600px;
+margin: 20px auto 0;
+}
+
+body > main > section:first-child input[type="search"] {
+margin: 10px 0;
+  }
 
 
 
