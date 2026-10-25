@@ -562,7 +562,6 @@ body {
     background-color: #F6F3FA !important;
     color: #263746 !important;
 }
-
 header {
     background-color: #183B4E !important;
     color: white !important;
@@ -571,4 +570,163 @@ header {
 h1 {
     color: #E7BE70 !important;
 }
+
+    }
+/* ===== Create Account Page - Purple Design ===== */
+
+.page-header {
+background: linear-gradient(135deg, #4B247A, #7952A9, #A78BCA);
+color: white;
+text-align: center;
+padding: 28px 15px;
+border-radius: 0 0 25px 25px;
+box-shadow: 0 5px 18px rgba(75, 36, 122, 0.2);
+}
+
+.page-header h1 {
+color: white;
+margin: 0;
+font-size: 30px;
+}
+
+.account-container {
+min-height: 75vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 40px 16px;
+background: linear-gradient(135deg, #F8F4FF, #EDE3FA);
+}
+
+.account-card {
+background: #FFFFFF;
+width: 100%;
+max-width: 460px;
+padding: 32px;
+border-radius: 22px;
+box-shadow: 0 10px 35px rgba(75, 36, 122, 0.15);
+border: 1px solid #E4D5F5;
+}
+
+.welcome-text {
+text-align: center;
+color: #6B4595;
+margin-bottom: 25px;
+line-height: 1.8;
+}
+
+.account-card h2 {
+color: #542C83;
+text-align: center;
+margin-top: 0;
+margin-bottom: 12px;
+}
+
+.form-group {
+margin-bottom: 18px;
+}
+
+.form-group label {
+display: block;
+color: #4B3268;
+font-weight: bold;
+margin-bottom: 8px;
+}
+
+.form-group input {
+width: 100%;
+padding: 13px;
+border: 1px solid #D7C5EA;
+border-radius: 10px;
+background: #FCFAFF;
+color: #352344;
+font-size: 15px;
+box-sizing: border-box;
+outline: none;
+transition: 0.3s;
+}
+
+.form-group input:focus {
+border-color: #8957BD;
+box-shadow: 0 0 0 3px rgba(137, 87, 189, 0.13);
+background: white;
+}
+
+.terms {
+color: #665675;
+font-size: 14px;
+line-height: 1.8;
+margin: 15px 0;
+}
+
+.terms a,
+.login-link a,
+.home-link a {
+color: #7545A5;
+font-weight: bold;
+text-decoration: none;
+}
+
+.terms a:hover,
+.login-link a:hover,
+.home-link a:hover {
+color: #48216F;
+text-decoration: underline;
+}
+
+.submit-button {
+display: block;
+width: 100%;
+padding: 14px;
+background: linear-gradient(135deg, #5C3288, #9164BD);
+color: white;
+border: none;
+border-radius: 12px;
+font-size: 17px;
+font-weight: bold;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.submit-button:hover {
+background: linear-gradient(135deg, #45216E, #7545A5);
+transform: translateY(-2px);
+box-shadow: 0 6px 15px rgba(75, 36, 122, 0.2);
+}
+
+.login-link,
+.home-link {
+text-align: center;
+margin-top: 20px;
+color: #665675;
+line-height: 1.8;
+}
+
+.home-link {
+margin-top: 12px;
+}
+
+.page-footer {
+background: #3E2458;
+color: white;
+text-align: center;
+padding: 18px 12px;
+margin-top: 0;
+}
+
+@media (max-width: 500px) {
+.account-container {
+padding: 25px 12px;
+}
+
+.account-card {
+    padding: 23px 18px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+}
+
+    }
+
 
