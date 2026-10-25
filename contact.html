@@ -6,82 +6,137 @@
     <title>Al-Anfal Library - Contact Us</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+    <body>
+        <header class="site-header">
+    <div class="site-logo">📚</div>
+    <h1>Al-Anfal Library</h1>
+    <p>Your World of Reading and Knowledge</p>
 
-    <header>
-        <h1>Al-Anfal Library</h1>
-        <p>Your World of Reading and Knowledge</p>
+    <nav class="main-nav">
+        <a href="home.html">Home</a>
+        <a href="books.html">Books</a>
+        <a href="contact.html" class="active">Contact Us</a>
+        <a href="index.html" class="logout-link">Logout ↪</a>
+    </nav>
+</header>
 
-        <nav>
-    <a href="home.html">Home</a>
-    <a href="books.html">Books</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="index.html" class="logout-link">Logout ↪</a>
-</nav>
-    </header>
+<main class="contact-container">
 
-    <hr>
-
-    <main>
+    <div class="contact-heading">
+        <span class="contact-icon">💌</span>
         <h2>Contact Us</h2>
         <p>We would love to hear from you!</p>
+    </div>
 
-        <section>
-            <h3>Contact Information</h3>
+    <div class="contact-grid">
 
-            <p>Location: Wad Madani, Sudan</p>
+        <section class="contact-card">
+            <h3>📍 Contact Information</h3>
 
-            <p>
-                Phone:
-                <a href="tel:+249000000000">
-                    +249 000 000 000
-                </a>
-            </p>
+            <div class="contact-item">
+                <span class="contact-symbol">📍</span>
+                <div>
+                    <h4>Our Location</h4>
+                    <p>Wad Madani, Sudan</p>
+                </div>
+            </div>
 
-            <p>
-                Email:
-                <a href="mailto:info@al-anfal-library.example">
-                    info@al-anfal-library.example
-                </a>
-            </p>
+            <div class="contact-item">
+                <span class="contact-symbol">📞</span>
+                <div>
+                    <h4>Phone Number</h4>
+                    <p>
+                        <a href="tel:+249000000000">
+                            +249 000 000 000
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <span class="contact-symbol">✉️</span>
+                <div>
+                    <h4>Email Address</h4>
+                    <p>
+                        <a href="mailto:info@al-anfal-library.example">
+                            info@al-anfal-library.example
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-note">
+                Have a question or suggestion?
+                We are happy to hear from you!
+            </div>
         </section>
 
-        <hr>
-
-        <section>
-            <h3>Send Us Your Comment</h3>
+        <section class="contact-card comment-card">
+            <h3>💬 Send Us Your Comment</h3>
+            <p class="form-description">
+                Share your thoughts and suggestions with us.
+            </p>
 
             <form action="#" method="post">
-                <label for="visitor-name">Full Name:</label><br>
-                <input type="text" id="visitor-name"
-                       name="full_name" required>
-                <br><br>
 
-                <label for="visitor-email">Your Email Address:</label><br>
-                <input type="email" id="visitor-email"
-                       name="visitor_email" required>
-                <br><br>
+                <div class="form-group">
+                    <label for="visitor-name">Full Name</label>
+                    <input
+                        type="text"
+                        id="visitor-name"
+                        name="full_name"
+                        placeholder="Enter your full name"
+                        required>
+                    
+                </div>
 
-                <label for="comment">Your Comment:</label><br>
-                <textarea id="comment" name="comment"
-                          rows="6" cols="35" required></textarea>
-                <br><br>
+                <div class="form-group">
+                    <label for="visitor-email">Email Address</label>
+                    <input
+                        type="email"
+                        id="visitor-email"
+                        name="visitor_email"
+                        placeholder="Enter your email"
+                        required>
+                    
+                </div>
 
-                <button type="submit">Add Comment</button>
-                <button type="reset">Clear Form</button>
+                <div class="form-group">
+                    <label for="comment">Your Comment</label>
+                    <textarea
+                        id="comment"
+                        name="comment"
+                        rows="5"
+                        placeholder="Write your comment here..."
+                        required>
+                    </textarea>
+                </div>
+
+                <div class="contact-buttons">
+                    <button type="submit" class="contact-submit">
+                        Add Comment
+                    </button>
+
+                    <button type="reset" class="contact-reset">
+                        Clear Form
+                    </button>
+                </div>
+
             </form>
         </section>
 
-        <hr>
+    </div>
 
-        <a href="home.html">Back to Home</a>
-    </main>
+    <div class="back-home">
+        <a href="home.html">← Back to Home</a>
+    </div>
 
-    <hr>
+</main>
 
-    <footer>
-        <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
-    </footer>
+<footer class="site-footer">
+    <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
+    <p>Read More. Learn More. Discover More. 💜</p>
+</footer>
 
 </body>
 </html>
