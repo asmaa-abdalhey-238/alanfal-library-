@@ -155,8 +155,10 @@ const matches = bookText.includes(query);
         searchInput.addEventListener("input", searchBooks);
         searchBooks();
     }
+    
     // 4. Favorite Buttons
     const favoriteButtons = document.querySelectorAll("[data-favorite]");
+    const favoritesList = document.getElementById("favorites-list");
     let favorites = [];
 
     try {
@@ -177,6 +179,34 @@ const matches = bookText.includes(query);
             : "🤍 أضف إلى المفضلة";
 
         button.setAttribute("aria-pressed", String(isFavorite));
+    }
+
+    function renderFavorites() {
+        if (!favoritesList) return;
+
+        favoritesList.replaceChildren();
+
+        const favoriteIds = new Set(favorites);
+
+        document.querySelectorAll(".book-card[data-book-id]").forEach(
+            function (card) {
+                if (!favoriteIds.has(card.dataset.bookId)) return;
+
+                const copy = card.cloneNode(true);
+                copy.querySelectorAll("[data-favorite]").forEach(
+                    function (button) {
+                        button.remove();
+                    }
+                );
+
+                favoritesList.appendChild(copy);
+            }
+        );
+
+        if (favoritesList.children.length === 0) {
+            favoritesList.textContent =
+                "You have no favorite books yet. Add a book using the favorite button.";
+        }
     }
 
     favoriteButtons.forEach(function (button) {
@@ -201,9 +231,11 @@ const matches = bookText.includes(query);
             );
 
             updateFavoriteButton(button, favorites.includes(bookId));
+            renderFavorites();
         });
     });
 
+    renderFavorites();
     // 5. Footer Year
     const yearElements = document.querySelectorAll("[data-current-year]");
 
