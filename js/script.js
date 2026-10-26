@@ -86,25 +86,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 field.setCustomValidity("");
             });
         });
-    });     
+    });        
     // 3. Book Search
     const searchInput = document.getElementById("book-search");
     const searchResults = document.getElementById("search-results");
 
-    const bookCards = document.querySelectorAll(".book-card, .book-item");
+    const bookCards = document.querySelectorAll(
+        "#science .book-card, " +
+        "#literature .book-card, " +
+        "#education .book-card, " +
+        "#student-corner .book-card, " +
+        "#pdf-books .book-card"
+    );
 
     function searchBooks() {
         if (!searchInput) return;
 
-        const query = searchInput.value
-            .trim()
-            .toLowerCase();
-
+        const query = searchInput.value.trim().toLowerCase();
         let visibleCount = 0;
 
         bookCards.forEach(function (card) {
-            const bookText = card.textContent.toLowerCase();
-            const matches = bookText.includes(query);
+            const text = card.textContent.toLowerCase();
+            const matches = text.includes(query);
 
             card.hidden = !matches;
 
@@ -131,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function () {
         searchInput.addEventListener("input", searchBooks);
         searchBooks();
     }
-
     // 4. Favorite Buttons
     const favoriteButtons = document.querySelectorAll("[data-favorite]");
     let favorites = [];
