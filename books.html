@@ -39,18 +39,23 @@
                 Explore our book collection and discover
                 new ideas, stories, and knowledge.
             </p>
+    
+<div class="book-search-section">
+    <h3>🔎 Find Your Favorite Book</h3>
 
-            <form action="books.html" method="get">
-                <label for="search">Search for a book:</label>
+    <input
+        type="search"
+        id="book-search"
+        class="book-search"
+        placeholder="Search by book title, author, or category..."
+        aria-label="Search books by title, author, or category">
 
-                <input
-                    type="search"
-                    id="search"
-                    name="search"
-                    placeholder="Enter book title or author">
+    <p id="search-results" aria-live="polite">
+        Explore our collection of books.
+    </p>
+</div>
 
-                <button type="submit">Search</button>
-            </form>
+            
         </section>
 
         <!-- Science Books -->
