@@ -1,0 +1,590 @@
+
+/* ==========================================
+   AL-ANFAL LIBRARY - MAIN STYLE SHEET
+   Purple, Gold, Cream and White Theme
+========================================== */
+
+/* 1. General Settings */
+:root {
+    --primary: #43215F;
+    --secondary: #7545A5;
+    --light-purple: #F0E8FA;
+    --gold: #D6A83E;
+    --cream: #FFF9EF;
+    --white: #FFFFFF;
+    --text: #30243A;
+    --muted: #756B7C;
+    --border: #E5D9EF;
+    --shadow: 0 8px 24px rgba(67, 33, 95, 0.12);
+    --radius: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Tahoma, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--secondary);
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+a:hover {
+    color: var(--gold);
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button,
+input[type="submit"] {
+    cursor: pointer;
+}
+
+/* 2. Header */
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+header h1,
+header h2 {
+    color: var(--white);
+    margin: 5px 0 10px;
+}
+
+header p {
+    margin: 5px 0;
+    color: var(--light-purple);
+}
+
+header img {
+    max-height: 130px;
+    object-fit: contain;
+}
+
+/* 3. Navigation */
+nav,
+.main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 12px;
+    background: var(--white);
+    box-shadow: 0 4px 12px rgba(67, 33, 95, 0.08);
+    position: relative;
+    z-index: 5;
+}
+
+nav a,
+.main-nav a {
+    display: inline-block;
+    padding: 9px 17px;
+    border-radius: 25px;
+    color: var(--primary);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+nav a:hover,
+.main-nav a:hover,
+nav a.active {
+    background: var(--light-purple);
+    color: var(--secondary);
+}
+
+nav a.logout-link,
+.main-nav a#logout-link,
+nav a:last-child.logout-link {
+    background: var(--secondary);
+    color: var(--white);
+}
+
+nav a.logout-link:hover,
+.main-nav a#logout-link:hover {
+    background: var(--primary);
+    color: var(--gold);
+}
+
+/* 4. Main Content */
+main {
+    width: min(1100px, 94%);
+    margin: 30px auto;
+    min-height: 50vh;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--primary);
+    line-height: 1.4;
+}
+
+h2 {
+    margin-top: 25px;
+    margin-bottom: 18px;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 65px;
+    height: 4px;
+    margin-top: 8px;
+    border-radius: 5px;
+    background: var(--gold);
+}
+
+/* 5. Library Banner */
+.library-banner {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 35px 20px;
+    margin: 24px auto;
+    width: min(1100px, 94%);
+    border-radius: var(--radius);
+    color: var(--white);
+    background:
+        linear-gradient(rgba(42, 20, 61, 0.65),
+                        rgba(42, 20, 61, 0.65)),
+        url("library-banner.png") center/cover no-repeat;
+    box-shadow: var(--shadow);
+}
+
+.library-banner h1,
+.library-banner h2,
+.library-banner p {
+    color: var(--white);
+}
+
+.library-banner h1 {
+    font-size: clamp(28px, 5vw, 44px);
+}
+
+.library-banner p {
+    max-width: 700px;
+}
+
+/* 6. General Cards */
+.card,
+.book-card,
+.feature-card,
+.info-card,
+.contact-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover,
+.book-card:hover,
+.feature-card:hover,
+.info-card:hover,
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(67, 33, 95, 0.17);
+}
+
+/* 7. Grids */
+.books-grid,
+.features-grid,
+.cards-grid,
+.book-list,
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    margin: 24px 0;
+}
+
+.book-card,
+.feature-card {
+    text-align: center;
+    overflow: hidden;
+}
+
+.book-card h3,
+.feature-card h3 {
+    margin: 12px 0;
+}
+
+.book-card p,
+.feature-card p {
+    color: var(--muted);
+}
+
+/* 8. Book Images */
+.book-card img,
+.book-cover img,
+.book-image,
+.feature-card img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 0 auto 15px;
+}
+
+.book-cover {
+    min-height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+    background: var(--light-purple);
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.book-card .price,
+.price {
+    color: var(--secondary);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* 9. Buttons */
+.btn,
+button,
+input[type="submit"],
+.button {
+    display: inline-block;
+    border: none;
+    border-radius: 28px;
+    padding: 11px 22px;
+    background: var(--secondary);
+    color: var(--white);
+    font-weight: bold;
+    text-align: center;
+    transition: 0.25s ease;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover,
+.button:hover {
+    background: var(--primary);
+    color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.btn-gold {
+    background: var(--gold);
+    color: var(--primary);
+}
+
+/* 10. Forms, Login and Create Account */
+form {
+    width: 100%;
+}
+
+.login-container,
+.login-box,
+.account-container,
+.register-container,
+.form-container {
+    width: min(460px, 92%);
+    margin: 35px auto;
+    padding: 30px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.login-container h2,
+.login-box h2,
+.account-container h2,
+.register-container h2,
+.form-container h2 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 12px 0 6px;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="url"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #FFFEFF;
+    color: var(--text);
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(117, 69, 165, 0.12);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+form input[type="submit"],
+.login-container button,
+.login-box button,
+.account-container button,
+.register-container button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-links,
+.login-links {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.form-links a,
+.login-links a {
+    display: inline-block;
+    margin: 5px;
+}
+
+/* 11. Contact Page */
+.contact-container,
+.contact-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+    margin: 25px 0;
+}
+
+.contact-card {
+    overflow-wrap: anywhere;
+}
+
+.contact-card h3 {
+    color: var(--secondary);
+}
+
+/* 12. Comments */
+.comments-section,
+.comment-box {
+    background: var(--white);
+    padding: 24px;
+    margin: 25px 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.comment {
+    padding: 14px;
+    margin: 12px 0;
+    background: var(--light-purple);
+    border-radius: 10px;
+    overflow-wrap: anywhere;
+}
+
+/* 13. Student Corner and Reading Lists */
+.student-corner,
+.reading-list,
+.favorites-section,
+.free-books {
+    background: var(--white);
+    padding: 24px;
+    margin: 25px 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+ul,
+ol {
+    padding-inline-start: 28px;
+}
+
+/* 14. Footer */
+footer {
+    margin-top: 45px;
+    padding: 24px 16px;
+    text-align: center;
+    background: var(--primary);
+    color: var(--white);
+}
+
+footer p {
+    margin: 6px 0;
+    color: var(--light-purple);
+}
+
+footer a {
+    color: var(--gold);
+}
+
+footer a:hover {
+    color: var(--white);
+}
+
+/* 15. Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.highlight {
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+.gold-text {
+    color: var(--gold);
+}
+
+.hidden {
+    display: none;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 25px 0;
+}
+
+/* 16. Tablet and Mobile */
+@media (max-width: 768px) {
+    header {
+        padding: 20px 12px;
+    }
+
+    nav,
+    .main-nav {
+        gap: 6px;
+        padding: 10px 6px;
+    }
+
+    nav a,
+    .main-nav a {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    main {
+        width: 94%;
+        margin: 22px auto;
+    }
+
+    .library-banner {
+        min-height: 230px;
+        padding: 25px 14px;
+    }
+
+    .books-grid,
+    .features-grid,
+    .cards-grid,
+    .book-list,
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+        gap: 14px;
+    }
+
+    .book-card,
+    .feature-card,
+    .card {
+        padding: 14px;
+    }
+
+    .book-card img,
+    .book-cover img,
+    .book-image,
+    .feature-card img {
+        height: 170px;
+    }
+
+    .login-container,
+    .login-box,
+    .account-container,
+    .register-container,
+    .form-container {
+        padding: 22px 18px;
+    }
+}
+
+@media (max-width: 400px) {
+    body {
+        font-size: 14px;
+    }
+
+    nav a,
+    .main-nav a {
+        padding: 7px 10px;
+        font-size: 12px;
+    }
+
+    .books-grid,
+    .features-grid,
+    .cards-grid,
+    .book-list,
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .book-card img,
+    .book-cover img,
+    .book-image,
+    .feature-card img {
+        height: 220px;
+    }
+}
