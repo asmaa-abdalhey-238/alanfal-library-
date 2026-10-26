@@ -87,9 +87,15 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     });        
+    
     // 3. Book Search
     const searchInput = document.getElementById("book-search");
     const searchResults = document.getElementById("search-results");
+
+    const bookSections = document.querySelectorAll(
+        "#science, #literature, #education, " +
+        "#student-corner, #pdf-books"
+    );
 
     const bookCards = document.querySelectorAll(
         "#science .book-card, " +
@@ -106,14 +112,28 @@ document.addEventListener("DOMContentLoaded", function () {
         let visibleCount = 0;
 
         bookCards.forEach(function (card) {
-            const text = card.textContent.toLowerCase();
-            const matches = text.includes(query);
+            const bookText = card.textContent
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+
+const matches = bookText.includes(query);
 
             card.hidden = !matches;
 
             if (matches) {
                 visibleCount++;
             }
+        });
+
+        bookSections.forEach(function (section) {
+            const sectionHasVisibleBook = Array.from(
+                section.querySelectorAll(".book-card")
+            ).some(function (card) {
+                return !card.hidden;
+            });
+
+            section.hidden = query !== "" && !sectionHasVisibleBook;
         });
 
         if (searchResults) {
@@ -125,7 +145,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     "No books found. Try another title or category.";
             } else {
                 searchResults.textContent =
-                    "Found " + visibleCount + " matching books.";
+                    "Found " + visibleCount +
+                    (visibleCount === 1 ? " matching book." : " matching books.");
             }
         }
     }
