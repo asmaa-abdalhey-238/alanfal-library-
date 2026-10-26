@@ -588,3 +588,146 @@ hr {
         height: 220px;
     }
 }
+
+/* =====================================
+   AL-ANFAL LIBRARY - DARK MODE
+===================================== */
+
+body {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+body.dark-mode {
+    --primary: #D8B9F5;
+    --secondary: #C49BEA;
+    --light-purple: #382744;
+    --gold: #F0C96A;
+    --cream: #17121F;
+    --white: #241B2E;
+    --text: #F4EDF9;
+    --muted: #C5B8D0;
+    --border: #493654;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+
+    background: var(--cream);
+    color: var(--text);
+}
+
+/* Headings and text */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+    color: var(--primary);
+}
+
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode label {
+    color: var(--text);
+}
+
+/* Navigation */
+body.dark-mode nav,
+body.dark-mode .main-nav {
+    background: #241B2E;
+}
+
+body.dark-mode nav a,
+body.dark-mode .main-nav a {
+    color: #F4EDF9;
+}
+
+body.dark-mode nav a:hover,
+body.dark-mode .main-nav a:hover,
+body.dark-mode nav a.active {
+    background: #493654;
+    color: #F0C96A;
+}
+
+/* Cards and sections */
+body.dark-mode .card,
+body.dark-mode .book-card,
+body.dark-mode .feature-card,
+body.dark-mode .info-card,
+body.dark-mode .contact-card,
+body.dark-mode .comments-section,
+body.dark-mode .comment-box,
+body.dark-mode .student-corner,
+body.dark-mode .reading-list,
+body.dark-mode .favorites-section,
+body.dark-mode .free-books {
+    background: #241B2E;
+    color: #F4EDF9;
+    border-color: #493654;
+}
+
+/* Inputs */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background: #17121F;
+    color: #F4EDF9;
+    border-color: #594268;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #BBAAC9;
+}
+
+/* Book cover placeholders */
+body.dark-mode .book-cover {
+    background: #382744;
+}
+
+/* Comments */
+body.dark-mode .comment {
+    background: #382744;
+    color: #F4EDF9;
+}
+
+/* Keep banner image and overlay */
+body.dark-mode .library-banner {
+    color: #FFFFFF;
+}
+
+/* Footer */
+body.dark-mode footer {
+    background: #100B16;
+    color: #F4EDF9;
+}
+
+body.dark-mode footer p {
+    color: #E0D3EB;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 16px;
+    margin: 4px;
+    border: 1px solid #D6A83E;
+    border-radius: 25px;
+    background: #F0E8FA;
+    color: #43215F;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    background: #D6A83E;
+    color: #43215F;
+}
+
+body.dark-mode .theme-toggle {
+    background: #382744;
+    color: #F0C96A;
+    border-color: #F0C96A;
+}
+
