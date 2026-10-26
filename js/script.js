@@ -86,28 +86,56 @@ document.addEventListener("DOMContentLoaded", function () {
                 field.setCustomValidity("");
             });
         });
-    });
-
+    });   
     // 3. Book Search
     const searchInput = document.getElementById("book-search");
+    const searchResults = document.getElementById("search-results");
+
     const bookCards = document.querySelectorAll(
-        ".book-card, .book-item"
+        "#science .book-card, " +
+        "#literature .book-card, " +
+        "#education .book-card, " +
+        "#student-corner .book-card, " +
+        "#pdf-books .book-card"
     );
 
-    if (searchInput && bookCards.length > 0) {
-        searchInput.addEventListener("input", function () {
-            const query = searchInput.value.trim().toLowerCase();
+    function searchBooks() {
+        if (!searchInput) return;
 
-            bookCards.forEach(function (card) {
-                const matches = card.textContent
-                    .toLowerCase()
-                    .includes(query);
+        const query = searchInput.value.trim().toLowerCase();
+        let visibleCount = 0;
 
-                card.hidden = !matches;
-            });
+        bookCards.forEach(function (card) {
+            const matches = card.textContent
+                .toLowerCase()
+                .includes(query);
+
+            card.hidden = !matches;
+
+            if (matches) {
+                visibleCount++;
+            }
         });
+
+        if (searchResults) {
+            if (query === "") {
+                searchResults.textContent =
+                    "Showing all " + visibleCount + " books.";
+            } else if (visibleCount === 0) {
+                searchResults.textContent =
+                    "No books found. Try another title or category.";
+            } else {
+                searchResults.textContent =
+                    "Found " + visibleCount +
+                    (visibleCount === 1 ? " matching book." : " matching books.");
+            }
+        }
     }
 
+    if (searchInput) {
+        searchInput.addEventListener("input", searchBooks);
+        searchBooks();
+    }
     // 4. Favorite Buttons
     const favoriteButtons = document.querySelectorAll("[data-favorite]");
     let favorites = [];
