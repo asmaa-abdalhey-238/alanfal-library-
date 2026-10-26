@@ -86,29 +86,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 field.setCustomValidity("");
             });
         });
-    });   
+    });     
     // 3. Book Search
     const searchInput = document.getElementById("book-search");
     const searchResults = document.getElementById("search-results");
 
-    const bookCards = document.querySelectorAll(
-        "#science .book-card, " +
-        "#literature .book-card, " +
-        "#education .book-card, " +
-        "#student-corner .book-card, " +
-        "#pdf-books .book-card"
-    );
+    const bookCards = document.querySelectorAll(".book-card, .book-item");
 
     function searchBooks() {
         if (!searchInput) return;
 
-        const query = searchInput.value.trim().toLowerCase();
+        const query = searchInput.value
+            .trim()
+            .toLowerCase();
+
         let visibleCount = 0;
 
         bookCards.forEach(function (card) {
-            const matches = card.textContent
-                .toLowerCase()
-                .includes(query);
+            const bookText = card.textContent.toLowerCase();
+            const matches = bookText.includes(query);
 
             card.hidden = !matches;
 
@@ -126,8 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "No books found. Try another title or category.";
             } else {
                 searchResults.textContent =
-                    "Found " + visibleCount +
-                    (visibleCount === 1 ? " matching book." : " matching books.");
+                    "Found " + visibleCount + " matching books.";
             }
         }
     }
@@ -136,6 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
         searchInput.addEventListener("input", searchBooks);
         searchBooks();
     }
+
     // 4. Favorite Buttons
     const favoriteButtons = document.querySelectorAll("[data-favorite]");
     let favorites = [];
