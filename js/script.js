@@ -523,27 +523,158 @@ document.addEventListener("DOMContentLoaded", function () {
                 JSON.stringify(favorites)
             );
 
-            if (!saved) {
-                showMessage(
-                    button.parentElement,
-                    "Favorites could not be saved in this browser.",
-                    true
-                );
-                return;
-            }
+    // 6. Favorite Buttons - All Books
+    const favoritesList = document.getElementById("favorites-list");
+    const catalogSections = document.querySelectorAll(
+        "#science, #literature, #education, " +
+        "#student-corner, #pdf-books"
+    );
 
-            updateFavoriteButton(
-                button,
-                favorites.includes(bookId)
+    let favorites = [];
+
+    try {
+        favorites = JSON.parse(
+            localStorage.getItem("alanfal-favorites") || "[]"
+        );
+
+        if (!Array.isArray(favorites)) {
+            favorites = [];
+        }
+    } catch (error) {
+        favorites = [];
+    }
+
+    // Collect only the original catalog cards.
+    function getCatalogCards() {
+        return document.querySelectorAll(
+            "#science .book-card[data-book-id], " +
+            "#literature .book-card[data-book-id], " +
+            "#education .book-card[data-book-id], " +
+            "#student-corner .book-card[data-book-id], " +
+            "#pdf-books .book-card[data-book-id]"
+        );
+    }
+
+    // Add a favorite button to every book that has a book ID.
+    getCatalogCards().forEach(function (card) {
+        let button = card.querySelector("[data-favorite]");
+
+        if (!button) {
+            button = document.createElement("button");
+            button.type = "button";
+            button.dataset.favorite = card.dataset.bookId;
+            button.className = "favorite-button";
+            button.style.marginTop = "10px";
+            button.style.cursor = "pointer";
+            card.appendChild(button);
+        }
+
+        button.setAttribute(
+            "aria-pressed",
+            String(favorites.includes(card.dataset.bookId))
+        );
+
+        button.textContent = favorites.includes(card.dataset.bookId)
+            ? "❤️ إزالة من المفضلة"
+            : "🤍 أضف إلى المفضلة";
+    });
+
+    function renderFavorites() {
+        if (!favoritesList) return;
+
+        favoritesList.replaceChildren();
+
+        getCatalogCards().forEach(function (card) {
+            if (!favorites.includes(card.dataset.bookId)) return;
+
+            const copy = card.cloneNode(true);
+
+            copy.querySelectorAll("[data-favorite]").forEach(
+                function (button) {
+                    button.remove();
+                }
             );
 
-            renderFavorites();
+            copy.hidden = false;
+            favoritesList.appendChild(copy);
         });
+
+        const placeholder = document.querySelector(
+            "#favorites .card.text-center"
+        );
+
+        if (placeholder) {
+            placeholder.hidden = favorites.length > 0;
+        }
+
+        if (favoritesList.children.length === 0) {
+            favoritesList.textContent =
+                "You have no favorite books yet. Add a book using the favorite button.";
+        }
+    }
+
+    // One click handler supports all current and dynamically added buttons.
+    document.addEventListener("click", function (event) {
+        const button = event.target.closest("[data-favorite]");
+
+        if (!button || !document.body.contains(button)) return;
+
+        const bookCard = button.closest(".book-card");
+
+        // Ignore buttons inside copied favorite cards.
+        if (!bookCard || !bookCard.closest(
+            "#science, #literature, #education, " +
+            "#student-corner, #pdf-books"
+        )) return;
+
+        const bookId = button.dataset.favorite;
+
+        if (!bookId) return;
+
+        const index = favorites.indexOf(bookId);
+
+        if (index === -1) {
+            favorites.push(bookId);
+        } else {
+            favorites.splice(index, 1);
+        }
+
+        try {
+            localStorage.setItem(
+                "alanfal-favorites",
+                JSON.stringify(favorites)
+            );
+        } catch (error) {
+            alert(
+                "Favorites could not be saved in this browser."
+            );
+            return;
+        }
+
+        // Update all buttons belonging to this book.
+        getCatalogCards().forEach(function (card) {
+            if (card.dataset.bookId !== bookId) return;
+
+            card.querySelectorAll("[data-favorite]").forEach(
+                function (favoriteButton) {
+                    const isFavorite = favorites.includes(bookId);
+
+                    favoriteButton.textContent = isFavorite
+                        ? "❤️ إزالة من المفضلة"
+                        : "🤍 أضف إلى المفضلة";
+
+                    favoriteButton.setAttribute(
+                        "aria-pressed",
+                        String(isFavorite)
+                    );
+                }
+            );
+        });
+
+        renderFavorites();
     });
 
     renderFavorites();
-
-
     // 7. Keep the Footer Year Updated
     const yearElements = document.querySelectorAll(
         "[data-current-year]"
