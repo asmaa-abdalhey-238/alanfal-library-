@@ -658,12 +658,200 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     renderFavorites();
+   
+    // ==========================================
+    // 8. MY READING LIST
+    // ==========================================
+
+    const readingSection = document.getElementById("reading-list");
+    const readingKey = "alanfal-reading-list";
+
+    let readingList = [];
+
+    try {
+        readingList = JSON.parse(
+            getStoredValue(readingKey, "[]")
+        );
+
+        if (!Array.isArray(readingList)) {
+            readingList = [];
+        }
+    } catch (error) {
+        readingList = [];
+    }
+
+    function saveReadingList() {
+        return saveStoredValue(
+            readingKey,
+            JSON.stringify(readingList)
+        );
+    }
+
+    function initializeReadingButtons() {
+        getCatalogCards().forEach(function (card) {
+            let button = card.querySelector("[data-reading-list]");
+
+            if (!button) {
+                button = document.createElement("button");
+                button.type = "button";
+                button.style.display = "block";
+                button.style.marginTop = "8px";
+                button.style.cursor = "pointer";
+                card.appendChild(button);
+            }
+
+            button.dataset.readingList = card.dataset.bookId;
+            button.classList.add("reading-list-button");
+
+            const added = readingList.includes(card.dataset.bookId);
+
+            button.textContent = added
+                ? "✅ في قائمة القراءة"
+                : "📖 أضف إلى قائمة القراءة";
+
+            button.setAttribute("aria-pressed", String(added));
+        });
+    }
+
+    function renderReadingList() {
+        if (!readingSection) return;
+
+        let listContainer = document.getElementById(
+            "reading-list-items"
+        );
+
+        if (!listContainer) {
+            const oldCard = readingSection.querySelector(".card");
+
+            listContainer = document.createElement("div");
+            listContainer.id = "reading-list-items";
+            listContainer.className = "reading-list-items";
+
+            if (oldCard) {
+                oldCard.replaceWith(listContainer);
+            } else {
+                readingSection.appendChild(listContainer);
+            }
+        }
+
+        listContainer.replaceChildren();
+
+        const cards = getCatalogCards();
+        let count = 0;
+
+        readingList.forEach(function (bookId) {
+            const originalCard = Array.from(cards).find(
+                function (card) {
+                    return card.dataset.bookId === bookId;
+                }
+            );
+
+            if (!originalCard) return;
+
+            count++;
+
+            const copy = originalCard.cloneNode(true);
+            copy.hidden = false;
+
+            copy.querySelectorAll(
+                "[data-favorite], [data-reading-list]"
+            ).forEach(function (button) {
+                button.remove();
+            });
+
+            const removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.textContent = "🗑️ إزالة من قائمة القراءة";
+            removeButton.dataset.removeReading = bookId;
+            removeButton.style.marginTop = "10px";
+            removeButton.style.cursor = "pointer";
+
+            copy.appendChild(removeButton);
+            listContainer.appendChild(copy);
+        });
+
+        if (count === 0) {
+            const emptyMessage = document.createElement("p");
+            emptyMessage.textContent =
+                "Your reading list is empty. Choose a book and click Add to Reading List.";
+            listContainer.appendChild(emptyMessage);
+        }
+
+        const heading = readingSection.querySelector("h2");
+
+        if (heading) {
+            heading.textContent =
+                "7. My Reading List | قائمة القراءة (" +
+                count + ")";
+        }
+    }
+
+    document.addEventListener("click", function (event) {
+        const target = event.target;
+
+        if (!(target instanceof Element)) return;
+
+        const addButton = target.closest("[data-reading-list]");
+
+        if (addButton) {
+            const bookId = addButton.dataset.readingList;
+
+            if (!bookId) return;
+
+            if (readingList.includes(bookId)) {
+                readingList = readingList.filter(
+                    function (id) {
+                        return id !== bookId;
+                    }
+                );
+            } else {
+                readingList.push(bookId);
+            }
+
+            if (!saveReadingList()) {
+                alert(
+                    "The reading list could not be saved in this browser."
+                );
+                return;
+            }
+
+            initializeReadingButtons();
+            renderReadingList();
+            return;
+        }
+
+        const removeButton = target.closest(
+            "[data-remove-reading]"
+        );
+
+        if (removeButton) {
+            const bookId = removeButton.dataset.removeReading;
+
+            readingList = readingList.filter(
+                function (id) {
+                    return id !== bookId;
+                }
+            );
+
+            if (!saveReadingList()) {
+                alert(
+                    "The reading list could not be saved in this browser."
+                );
+                return;
+            }
+
+            initializeReadingButtons();
+            renderReadingList();
+        }
+    });
+
+    initializeReadingButtons();
+    renderReadingList();
 
 
     // ==========================================
-    // 8. FOOTER YEAR
+    // 9. FOOTER YEAR
     // ==========================================
-
     const yearElements = document.querySelectorAll(
         "[data-current-year]"
     );
@@ -674,7 +862,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================
-    // 9. PREVENT EMPTY PLACEHOLDER LINKS
+    // 10. PREVENT EMPTY PLACEHOLDER LINKS
     // ==========================================
 
     document.querySelectorAll('a[href="#"]').forEach(
