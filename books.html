@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,83 +8,88 @@
 
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
     <!-- Header -->
     <header>
         <h1>Al-Anfal Library</h1>
         <p>Your World of Reading and Knowledge</p>
-        <nav class="main-nav">  
-    <a href="home.html">Home</a>  
-    <a href="books.html">Books</a>  
-    <a href="contact.html">Contact Us</a> 
-    <button type="button" id="theme-toggle" class="theme-toggle">
-        🌙 الوضع الليلي
-               </button>
-    <a href="index.html" id="logout-link">Logout</a>  
-</nav>  
+        <nav class="main-nav">
+         <a href="home.html">Home</a>
+          <a href="books.html">Books</a>
+          <a href="contact.html">Contact Us</a>
 
-        
+         <button type="button" id="theme-toggle" class="theme-toggle">
+                🌙 الوضع الليلي
+         </button>
+
+          <a href="index.html" id="logout-link">Logout</a>
+     </nav>
     </header>
 
-    <main>
+  <main>
 
-        <!-- Introduction -->
-        <section class="text-center">
-            <h2>Our Book Collection | مجموعة كتبنا</h2>
+        <!-- Introduction and Search -->
+     <section class="text-center">
+      <h2>Our Book Collection | مجموعة كتبنا</h2>
 
-            <p>
-                Explore our book collection and discover
-                new ideas, stories, and knowledge.
-            </p>
-    
-<div class="book-search-section">
-    <h3>🔎 Find Your Favorite Book</h3>
+      <p>
+  Explore our book collection and discover
+ new ideas, stories, and knowledge.
+         </p>
 
-    <input
-        type="search"
-        id="book-search"
-        class="book-search"
-        placeholder="Search by book title, author, or category..."
-        aria-label="Search books by title, author, or category">
+         <div class="book-search-section">
+          <h3>🔎 Find Your Favorite Book</h3>
 
-    <p id="search-results" aria-live="polite">
-        Explore our collection of books.
-    </p>
-</div>
+       <input
+       type="search"
+       id="book-search"
+       class="book-search"
+       placeholder="Search by book title, author, or category..."
+      aria-label="Search books by title, author, or category">
 
-            
-        </section>
+     <p id="search-results" aria-live="polite">
+         Explore our collection of books.
+         </p>
+     </div>
+     </section>
 
-        <!-- Science Books -->
-        <section id="science">
+        <!-- 1. Science Books -->
+  <section id="science">
+         <h2>1 Science Books | كتب العلوم</h2>
 
-            <h2>1. Science Books | كتب العلوم</h2>
+         <div class="books-grid">
 
-            <div class="books-grid">
+          <!-- Statistics -->
+         <article class="book-card" data-book-id="statistics">
+              <div class="book-cover">
+                 <img src="image/statistics.jpg"
+                      alt="Introduction to Statistics"
+                       loading="lazy">
+                    </div>
 
-                <article class="book-card" data-book-id="statistics">
-                    <div class="book-cover">📘</div>
                     <div class="book-info">
                         <h3>Introduction to Statistics</h3>
                         <p>Category: Statistics</p>
                         <p>Learn the basics of statistics and data analysis.</p>
-                        
-<p class="price">5000 SDG</p>
+                        <p class="price">5000 SDG</p>
 
-<button type="button"
-        class="btn favorite-btn"
-        data-favorite="statistics">
-    🤍 أضف إلى المفضلة
-</button>
+                        <button type="button"
+                                class="btn favorite-btn"
+                                data-favorite="statistics">
+                            🤍 أضف إلى المفضلة
+                        </button>
 
-<a href="#student-offer" class="btn">View Details</a>                   
+                        <a href="#student-offer" class="btn">View Details</a>
                     </div>
                 </article>
 
-                    <article class="book-card" data-book-id="computer-science">
-                    <div class="book-cover">💻</div>
+                <!-- Computer Science -->
+                <article class="book-card" data-book-id="computer-science">
+                    <div class="book-cover">
+                        <img src="image/computer.jpg"
+                             alt="Computer Science Basics"
+                             loading="lazy">
+                    </div>
 
                     <div class="book-info">
                         <h3>Computer Science Basics</h3>
@@ -93,33 +97,87 @@
                         <p>An introduction to computers and programming.</p>
                         <p class="price">6000 SDG</p>
 
-<button type="button"
-        class="btn favorite-btn"
-        data-favorite="computer-science">
-    🤍 أضف إلى المفضلة
-</button>
-<a href="#student-offer" class="btn">View Details</a>
+                        <button type="button"
+                                class="btn favorite-btn"
+                                data-favorite="computer-science">
+                            🤍 أضف إلى المفضلة
+                        </button>
+
+                        <a href="#student-offer" class="btn">View Details</a>
                     </div>
                 </article>
 
+                <!-- Artificial Intelligence -->
                 <article class="book-card" data-book-id="artificial-intelligence">
-                    <div class="book-cover">🤖</div>
+                    <div class="book-cover">
+                        <img src="image/ai.jpg"
+                             alt="Introduction to Artificial Intelligence"
+                             loading="lazy">
+                    </div>
 
                     <div class="book-info">
                         <h3>Introduction to Artificial Intelligence</h3>
                         <p>Category: Artificial Intelligence</p>
                         <p>Discover AI concepts and smart systems.</p>
                         <p class="price">7000 SDG</p>
+
                         <a href="#student-offer" class="btn">View Details</a>
+                    </div>
+                </article>
+
+                <!-- Probability and Statistics -->
+                <article class="book-card" data-book-id="probability-statistics">
+                    <div class="book-cover">
+                        <img src="image/probability-statistics.jpg"
+                             alt="Probability and Statistics"
+                             loading="lazy">
+                    </div>
+
+                    <div class="book-info">
+                        <h3>Probability and Statistics</h3>
+                        <p>Category: Mathematics and Statistics</p>
+                        <p>Explore probability concepts and statistical methods.</p>
+                        <a href="#pdf-books" class="btn">Explore Books</a>
+                    </div>
+                </article>
+
+                <!-- Data Science -->
+                <article class="book-card" data-book-id="data-science">
+                    <div class="book-cover">
+                        <img src="image/data-science.jpg"
+                             alt="Data Science Fundamentals"
+                             loading="lazy">
+                    </div>
+
+                    <div class="book-info">
+                        <h3>Data Science Fundamentals</h3>
+                        <p>Category: Data Science</p>
+                        <p>Discover how data is collected, analyzed, and interpreted.</p>
+                        <a href="#pdf-books" class="btn">Explore Books</a>
+                    </div>
+                </article>
+
+                <!-- Machine Learning -->
+                <article class="book-card" data-book-id="machine-learning">
+                    <div class="book-cover">
+                        <img src="image/machine-learning.jpg"
+                             alt="Machine Learning"
+                             loading="lazy">
+                    </div>
+
+                    <div class="book-info">
+                        <h3>Machine Learning</h3>
+                        <p>Category: Artificial Intelligence</p>
+                        <p>Learn how computers identify patterns and learn from data.</p>
+                        <a href="#pdf-books" class="btn">Explore Books</a>
                     </div>
                 </article>
 
             </div>
         </section>
 
-        <!-- Literature Books -->
+        <!-- 2. Literature Books -->
         <section id="literature">
-
             <h2>2. Literature Books | الأدب والروايات</h2>
 
             <div class="books-grid">
@@ -149,7 +207,11 @@
                 </article>
 
                 <article class="book-card" data-book-id="novels">
-                    <div class="book-cover">📚</div>
+                    <div class="book-cover">
+                        <img src="image/novel.jpg"
+                             alt="Novels and Adventures"
+                             loading="lazy">
+                    </div>
 
                     <div class="book-info">
                         <h3>Novels and Adventures</h3>
@@ -160,12 +222,45 @@
                     </div>
                 </article>
 
+                <!-- Pride and Prejudice -->
+                <article class="book-card" data-book-id="pride-and-prejudice">
+                    <div class="book-cover">
+                        <img src="image/pride-prejudice.jpg"
+                             alt="Pride and Prejudice by Jane Austen"
+                             loading="lazy">
+                    </div>
+
+                    <div class="book-info">
+                        <h3>Pride and Prejudice</h3>
+                        <p>Author: Jane Austen</p>
+                        <p>Category: Classic Literature</p>
+                        <p>Enjoy a timeless story of love, society, and relationships.</p>
+                        <a href="#pdf-books" class="btn">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Sherlock Holmes -->
+                <article class="book-card" data-book-id="sherlock-holmes">
+                    <div class="book-cover">
+                        <img src="image/sherlock-holmes.jpg"
+                             alt="The Adventures of Sherlock Holmes"
+                             loading="lazy">
+                    </div>
+
+                    <div class="book-info">
+                        <h3>The Adventures of Sherlock Holmes</h3>
+                        <p>Author: Arthur Conan Doyle</p>
+                        <p>Category: Mystery and Fiction</p>
+                        <p>Discover intriguing mysteries with the famous detective.</p>
+                        <a href="#pdf-books" class="btn">Read More</a>
+                    </div>
+                </article>
+
             </div>
         </section>
 
-        <!-- Educational Books -->
+        <!-- 3. Educational Books -->
         <section id="education">
-
             <h2>3. Educational Books | الكتب التعليمية</h2>
 
             <div class="books-grid">
@@ -197,9 +292,8 @@
             </div>
         </section>
 
-        <!-- Student Corner -->
+        <!-- 4. Student Corner -->
         <section id="student-corner">
-
             <h2>4. Student Corner | ركن الطالب</h2>
 
             <p>
@@ -214,8 +308,10 @@
 
                     <div class="book-info">
                         <h3>Programming Resources</h3>
-                        <p>Learn about programming languages,
-                            algorithms, and software development.</p>
+                        <p>
+                            Learn about programming languages,
+                            algorithms, and software development.
+                        </p>
                         <a href="#pdf-books" class="btn">Explore Resources</a>
                     </div>
                 </article>
@@ -225,8 +321,10 @@
 
                     <div class="book-info">
                         <h3>University Study Resources</h3>
-                        <p>Discover study guides, revision materials,
-                            and useful academic references.</p>
+                        <p>
+                            Discover study guides, revision materials,
+                            and useful academic references.
+                        </p>
                         <a href="#reading-list" class="btn">Explore Resources</a>
                     </div>
                 </article>
@@ -236,61 +334,69 @@
 
                     <div class="book-info">
                         <h3>Computer and Technology</h3>
-                        <p>Explore databases, web development,
-                            networking, and information technology.</p>
+                        <p>
+                            Explore databases, web development,
+                            networking, and information technology.
+                        </p>
                         <a href="#pdf-books" class="btn">Explore Resources</a>
                     </div>
                 </article>
 
             </div>
-        </section>     
-        <!-- PDF Books -->
-        <section id="pdf-books">
+        </section>
 
+        <!-- 5. Free Digital Books -->
+        <section id="pdf-books">
             <h2>5. Free Digital Books | الكتب الإلكترونية المجانية</h2>
 
             <p>
-                Discover free educational books, computer science,
-                statistics, English learning, and classic novels.
-                Read online or download from the original source.
+                Discover educational books, computer science,
+                statistics, and classic novels. Read online or
+                explore downloads from the original sources.
             </p>
 
             <div class="books-grid">
 
-                <!-- Statistics -->
+                <!-- Introductory Statistics -->
                 <article class="book-card" data-book-id="introductory-statistics">
-                    <div class="book-cover">📊</div>
+                    <div class="book-cover">
+                        <img src="image/statistics.jpg"
+                             alt="Introductory Statistics"
+                             loading="lazy">
+                    </div>
 
                     <div class="book-info">
                         <h3>Introductory Statistics 2e</h3>
-                        <p>Author: Barbara Illowsky and Susan Dean</p>
+                        <p>Authors: Barbara Illowsky and Susan Dean</p>
                         <p>Category: Statistics and Data Analysis</p>
                         <p>
                             Learn descriptive statistics, probability,
                             distributions, confidence intervals, and hypothesis testing.
                         </p>
 
-                        <a
-                            href="https://openstax.org/books/introductory-statistics-2e/pages/1-introduction"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn">
+                        <a href="https://openstax.org/books/introductory-statistics-2e/pages/1-introduction"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn">
                             📖 Read Online
                         </a>
 
-                        <a
-                            href="https://assets.openstax.org/oscms-prodcms/media/documents/Introductory_Statistics_2e_-_WEB.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn">
+                        <a href="https://assets.openstax.org/oscms-prodcms/media/documents/Introductory_Statistics_2e_-_WEB.pdf"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn">
                             ⬇️ Open PDF
                         </a>
                     </div>
                 </article>
 
-                <!-- Computer Science -->
+                <!-- OpenStax Computer Science -->
                 <article class="book-card" data-book-id="openstax-computer-science">
-                    <div class="book-cover">💻</div>
+                    <div class="book-cover">
+                        <img src="image/computer.jpg"
+                             alt="Introduction to Computer Science"
+                             loading="lazy">
+                    </div>
 
                     <div class="book-info">
                         <h3>Introduction to Computer Science</h3>
@@ -301,19 +407,17 @@
                             programming, networks, and software development.
                         </p>
 
-                        <a
-                            href="https://openstax.org/books/introduction-computer-science/pages/1-introduction"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn">
+                        <a href="https://openstax.org/books/introduction-computer-science/pages/1-introduction"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn">
                             📖 Read Online
                         </a>
 
-                        <a
-                            href="https://openstax.org/books/introduction-computer-science"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn">
+                        <a href="https://openstax.org/books/introduction-computer-science"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn">
                             ⬇️ Book and Download Options
                         </a>
                     </div>
@@ -332,42 +436,93 @@
                             in Wonderland.
                         </p>
 
-                        <a
-                            href="https://www.gutenberg.org/ebooks/11"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn">
+                        <a href="https://www.gutenberg.org/ebooks/11"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn">
                             📖 Read or Download
                         </a>
                     </div>
                 </article>
 
+                <!-- Probability and Statistics -->
+                <article class="book-card" data-book-id="digital-probability-statistics">
+                    <div class="book-cover">
+                        <img src="image/probability-statistics.jpg"
+                             alt="Probability and Statistics"
+                             loading="lazy">
+                    </div>
+
+                    <div class="book-info">
+                        <h3>Probability and Statistics</h3>
+                        <p>Category: Mathematics and Statistics</p>
+                        <p>Explore probability concepts and statistical methods.</p>
+                        <a href="#science" class="btn">Explore Collection</a>
+                    </div>
+                </article>
+
+                <!-- Data Science -->
+                <article class="book-card" data-book-id="digital-data-science">
+                    <div class="book-cover">
+                        <img src="image/data-science.jpg"
+                             alt="Data Science"
+                             loading="lazy">
+                    </div>
+
+                    <div class="book-info">
+                        <h3>Data Science</h3>
+                        <p>Category: Data Analysis and Computing</p>
+                        <p>Discover data analysis, visualization, and practical applications.</p>
+                        <a href="#science" class="btn">Explore Collection</a>
+                    </div>
+                </article>
+
+                <!-- Machine Learning -->
+                <article class="book-card" data-book-id="digital-machine-learning">
+                    <div class="book-cover">
+                        <img src="image/machine-learning.jpg"
+                             alt="Machine Learning"
+                             loading="lazy">
+                    </div>
+
+                    <div class="book-info">
+                        <h3>Machine Learning</h3>
+                        <p>Category: Artificial Intelligence</p>
+                        <p>Explore machine learning concepts and intelligent systems.</p>
+                        <a href="#science" class="btn">Explore Collection</a>
+                    </div>
+                </article>
+
                 <!-- Sherlock Holmes -->
-                <article class="book-card" data-book-id="sherlock-holmes">
-                    <div class="book-cover">🔎</div>
+                <article class="book-card" data-book-id="digital-sherlock-holmes">
+                    <div class="book-cover">
+                        <img src="image/sherlock-holmes.jpg"
+                             alt="The Adventures of Sherlock Holmes"
+                             loading="lazy">
+                    </div>
 
                     <div class="book-info">
                         <h3>The Adventures of Sherlock Holmes</h3>
                         <p>Author: Arthur Conan Doyle</p>
                         <p>Category: Mystery and Fiction</p>
-                        <p>
-                            Solve mysteries with the famous detective
-                            Sherlock Holmes.
-                        </p>
+                        <p>Solve mysteries with the famous detective.</p>
 
-                        <a
-                            href="https://www.gutenberg.org/ebooks/1661"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn">
+                        <a href="https://www.gutenberg.org/ebooks/1661"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn">
                             📖 Read or Download
                         </a>
                     </div>
                 </article>
 
                 <!-- Pride and Prejudice -->
-                <article class="book-card" data-book-id="pride-and-prejudice">
-                    <div class="book-cover">🌹</div>
+                <article class="book-card" data-book-id="digital-pride-and-prejudice">
+                    <div class="book-cover">
+                        <img src="image/pride-prejudice.jpg"
+                             alt="Pride and Prejudice by Jane Austen"
+                             loading="lazy">
+                    </div>
 
                     <div class="book-info">
                         <h3>Pride and Prejudice</h3>
@@ -378,11 +533,10 @@
                             your English reading skills.
                         </p>
 
-                        <a
-                            href="https://www.gutenberg.org/ebooks/1342"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn">
+                        <a href="https://www.gutenberg.org/ebooks/1342"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn">
                             📖 Read or Download
                         </a>
                     </div>
@@ -392,17 +546,15 @@
 
             <p>
                 Book formats and download options vary by source.
-                Please check each publisher's license before redistributing
-                book files.
+                Check each publisher's terms before redistributing files.
             </p>
-
         </section>
 
-        <!-- Favorites -->
+        <!-- 6. Favorites -->
         <section id="favorites">
-
             <h2>6. My Favorite Books | كتبي المفضلة</h2>
-        <div id="favorites-list" class="books-grid"></div>
+
+            <div id="favorites-list" class="books-grid"></div>
 
             <div class="card text-center">
                 <div class="book-cover">💚</div>
@@ -410,20 +562,15 @@
                 <h3>Your Favorite Books</h3>
 
                 <p>
-                    This section is for books you love and want
-                    to read again.
-                </p>
-
-                <p>
-                    Your favorite books will appear here after
-                    the favorites feature is added.
+                    Add books to your favorites using the favorite buttons.
+                    If the favorites feature is connected in JavaScript,
+                    your selected books will appear here.
                 </p>
             </div>
         </section>
 
-        <!-- Reading List -->
+        <!-- 7. Reading List -->
         <section id="reading-list">
-
             <h2>7. My Reading List | قائمة القراءة</h2>
 
             <div class="card">
@@ -437,14 +584,13 @@
 
                 <p>
                     This is a sample reading list.
-                    Saving and editing the list will be added later.
+                    Saving and editing it requires JavaScript functionality.
                 </p>
             </div>
         </section>
 
-        <!-- Student Offer -->
+        <!-- 8. Student Offer -->
         <section id="student-offer">
-
             <h2>8. Student Offer | عروض الطلاب</h2>
 
             <div class="hero">
@@ -479,8 +625,10 @@
         <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
         <p>Your World of Reading and Knowledge</p>
     </footer>
-  
- <script src="js/script.js" defer></script>
+
+    <script src="js/script.js" defer></script>
 
 </body>
 </html>
+
+            
