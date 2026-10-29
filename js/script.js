@@ -7,7 +7,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     "use strict";
 
-    // Safe localStorage helpers
+    // ==========================================
+    // 1. SAFE LOCAL STORAGE HELPERS
+    // ==========================================
+
     function getStoredValue(key, fallback) {
         try {
             const value = localStorage.getItem(key);
@@ -26,8 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Create an accessible message without editing HTML
     function showMessage(form, message, isError) {
+        if (!form) return;
+
         let messageBox = form.querySelector(".js-form-message");
 
         if (!messageBox) {
@@ -45,7 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
         messageBox.style.color = isError ? "#b00020" : "#18743b";
     }
 
-    // 1. Automatic Dark and Light Mode
+
+    // ==========================================
+    // 2. AUTOMATIC DARK AND LIGHT MODE
+    // ==========================================
+
     const themeButton = document.getElementById("theme-toggle");
     const savedTheme = getStoredValue("alanfal-theme", null);
 
@@ -68,8 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // A saved choice takes priority over the automatic schedule.
-    let manualTheme = savedTheme === "dark" || savedTheme === "light";
+    let manualTheme =
+        savedTheme === "dark" || savedTheme === "light";
 
     applyTheme(
         manualTheme
@@ -79,9 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (themeButton) {
         themeButton.addEventListener("click", function () {
-            const nextTheme = document.body.classList.contains("dark-mode")
-                ? "light"
-                : "dark";
+            const nextTheme =
+                document.body.classList.contains("dark-mode")
+                    ? "light"
+                    : "dark";
 
             saveStoredValue("alanfal-theme", nextTheme);
             manualTheme = true;
@@ -89,7 +98,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Check the time every minute when no manual choice exists.
+    // Automatically change the theme according to time
+    // unless the visitor has chosen a theme manually.
     setInterval(function () {
         if (!manualTheme) {
             applyTheme(isNightTime() ? "dark" : "light");
@@ -97,18 +107,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 60000);
 
 
-    // 2. General Form Validation
+    // ==========================================
+    // 3. GENERAL FORM VALIDATION
+    // ==========================================
+
     const forms = document.querySelectorAll("form");
 
     forms.forEach(function (form) {
         form.querySelectorAll("[required]").forEach(function (field) {
-            field.addEventListener("input", function () {
+            function clearFieldMessage() {
                 field.setCustomValidity("");
-            });
+            }
 
-            field.addEventListener("change", function () {
-                field.setCustomValidity("");
-            });
+            field.addEventListener("input", clearFieldMessage);
+            field.addEventListener("change", clearFieldMessage);
         });
 
         form.addEventListener("submit", function (event) {
@@ -142,49 +154,52 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // 3. Create Account: Confirm Password
-    const accountForm = document.getElementById("confirm-password");
+    // ==========================================
+    // 4. CREATE ACCOUNT FORM
+    // ==========================================
 
-    if (accountForm) {
-        const form = accountForm.closest("form");
-        const passwordInput = document.getElementById("password");
+    const confirmPasswordInput =
+        document.getElementById("confirm-password");
+
+    const passwordInput =
+        document.getElementById("password");
+
+    if (confirmPasswordInput && passwordInput) {
+        const accountForm = confirmPasswordInput.closest("form");
 
         function validatePasswords() {
-            accountForm.setCustomValidity("");
+            confirmPasswordInput.setCustomValidity("");
 
             if (
-                passwordInput &&
-                accountForm.value &&
-                passwordInput.value !== accountForm.value
+                confirmPasswordInput.value &&
+                passwordInput.value !== confirmPasswordInput.value
             ) {
-                accountForm.setCustomValidity(
+                confirmPasswordInput.setCustomValidity(
                     "Passwords do not match. Please try again."
                 );
             }
         }
 
-        if (passwordInput) {
-            passwordInput.addEventListener("input", validatePasswords);
-        }
+        passwordInput.addEventListener("input", validatePasswords);
+        confirmPasswordInput.addEventListener("input", validatePasswords);
 
-        accountForm.addEventListener("input", validatePasswords);
-
-        if (form) {
-            form.addEventListener("submit", function (event) {
+        if (accountForm) {
+            accountForm.addEventListener("submit", function (event) {
                 validatePasswords();
 
-                if (!form.checkValidity()) {
+                if (!accountForm.checkValidity()) {
                     event.preventDefault();
-                    form.reportValidity();
+                    accountForm.reportValidity();
                     return;
                 }
 
-                // No backend registration yet.
+                // This is front-end validation only.
+                // Actual account creation requires a backend.
                 event.preventDefault();
 
                 showMessage(
-                    form,
-                    "Your information passed validation. Actual account creation will be enabled when the PHP backend is added.",
+                    accountForm,
+                    "Your information passed validation. Actual account creation requires the backend stage.",
                     false
                 );
             });
@@ -192,7 +207,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // 4. Contact Form: Save Comments in This Browser
+    // ==========================================
+    // 5. CONTACT FORM AND SAVED COMMENTS
+    // ==========================================
+
     const commentInput = document.getElementById("comment");
     const visitorNameInput = document.getElementById("visitor-name");
     const visitorEmailInput = document.getElementById("visitor-email");
@@ -235,11 +253,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 commentsSection.appendChild(heading);
                 commentsSection.appendChild(commentsList);
 
-                const contactContainer =
+                const contactGrid =
                     document.querySelector(".contact-grid");
 
-                if (contactContainer) {
-                    contactContainer.insertAdjacentElement(
+                if (contactGrid) {
+                    contactGrid.insertAdjacentElement(
                         "afterend",
                         commentsSection
                     );
@@ -265,6 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const emptyMessage = document.createElement("p");
                 emptyMessage.textContent =
                     "No comments have been saved on this device yet.";
+
                 commentsList.appendChild(emptyMessage);
                 return;
             }
@@ -288,6 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 article.appendChild(name);
                 article.appendChild(date);
                 article.appendChild(message);
+
                 commentsList.appendChild(article);
             });
         }
@@ -331,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!saved) {
                     showMessage(
                         commentForm,
-                        "The comment could not be saved in this browser. Please check your browser storage settings.",
+                        "The comment could not be saved in this browser.",
                         true
                     );
                     return;
@@ -361,7 +381,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // 5. Book Search
+    // ==========================================
+    // 6. BOOK SEARCH
+    // ==========================================
+
     const searchInput = document.getElementById("book-search");
     const searchResults = document.getElementById("search-results");
 
@@ -400,14 +423,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         bookSections.forEach(function (section) {
-            const sectionHasVisibleBook = Array.from(
+            const hasVisibleBook = Array.from(
                 section.querySelectorAll(".book-card")
             ).some(function (card) {
                 return !card.hidden;
             });
 
-            section.hidden =
-                query !== "" && !sectionHasVisibleBook;
+            section.hidden = query !== "" && !hasVisibleBook;
         });
 
         if (searchResults) {
@@ -433,9 +455,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // 6. Favorite Buttons
-    const favoriteButtons = document.querySelectorAll("[data-favorite]");
+    // ==========================================
+    // 7. FAVORITES - ALL BOOK CARDS
+    // ==========================================
+
     const favoritesList = document.getElementById("favorites-list");
+
     let favorites = [];
 
     try {
@@ -450,144 +475,99 @@ document.addEventListener("DOMContentLoaded", function () {
         favorites = [];
     }
 
+    // Find all book cards, including cards without a book ID.
+    function getCatalogCards() {
+        const cards = document.querySelectorAll(
+            "#science .book-card, " +
+            "#literature .book-card, " +
+            "#education .book-card, " +
+            "#student-corner .book-card, " +
+            "#pdf-books .book-card"
+        );
+
+        cards.forEach(function (card, index) {
+            if (!card.dataset.bookId) {
+                const heading = card.querySelector("h3, h2");
+                const title = heading
+                    ? heading.textContent.trim()
+                    : "book-" + (index + 1);
+
+                const slug = title
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-|-$/g, "");
+
+                card.dataset.bookId =
+                    slug || "book-" + (index + 1);
+            }
+
+            // Ensure each existing favorite button uses the card ID.
+            card.querySelectorAll("[data-favorite]").forEach(
+                function (button) {
+                    button.dataset.favorite = card.dataset.bookId;
+                }
+            );
+        });
+
+        return cards;
+    }
+
     function updateFavoriteButton(button, isFavorite) {
         button.textContent = isFavorite
             ? "❤️ إزالة من المفضلة"
             : "🤍 أضف إلى المفضلة";
 
         button.setAttribute("aria-pressed", String(isFavorite));
+        button.type = "button";
+        button.classList.add("favorite-button");
     }
 
-    function renderFavorites() {
-        if (!favoritesList) return;
+    // Create a favorite button for every book card.
+    function initializeFavoriteButtons() {
+        getCatalogCards().forEach(function (card) {
+            let button = card.querySelector("[data-favorite]");
 
-        favoritesList.replaceChildren();
+            if (!button) {
+                button = document.createElement("button");
+                button.type = "button";
+                button.className = "favorite-button";
+                button.style.marginTop = "10px";
+                button.style.cursor = "pointer";
 
-        const favoriteIds = new Set(favorites);
-
-        document.querySelectorAll(
-            ".book-card[data-book-id]"
-        ).forEach(function (card) {
-            if (!favoriteIds.has(card.dataset.bookId)) return;
-
-            const copy = card.cloneNode(true);
-
-            copy.querySelectorAll("[data-favorite]").forEach(
-                function (button) {
-                    button.remove();
-                }
-            );
-
-            // Do not carry over search visibility to the copy.
-            copy.hidden = false;
-
-            favoritesList.appendChild(copy);
-        });
-
-        // Hide the old placeholder card already present in books.html.
-        const oldPlaceholder = document.querySelector(
-            "#favorites .card.text-center"
-        );
-
-        if (oldPlaceholder) {
-            oldPlaceholder.hidden = favoritesList.children.length > 0;
-        }
-
-        if (favoritesList.children.length === 0) {
-            favoritesList.textContent =
-                "You have no favorite books yet. Add a book using the favorite button.";
-        }
-    }
-
-    favoriteButtons.forEach(function (button) {
-        const bookId = button.dataset.favorite;
-
-        if (!bookId) return;
-
-        updateFavoriteButton(
-            button,
-            favorites.includes(bookId)
-        );
-
-        button.addEventListener("click", function () {
-            const index = favorites.indexOf(bookId);
-
-            if (index === -1) {
-                favorites.push(bookId);
-            } else {
-                favorites.splice(index, 1);
+                card.appendChild(button);
             }
 
-            const saved = saveStoredValue(
-                "alanfal-favorites",
-                JSON.stringify(favorites)
-            );
-
-    // 6. Favorite Buttons - All Books
-    const favoritesList = document.getElementById("favorites-list");
-    const catalogSections = document.querySelectorAll(
-        "#science, #literature, #education, " +
-        "#student-corner, #pdf-books"
-    );
-
-    let favorites = [];
-
-    try {
-        favorites = JSON.parse(
-            localStorage.getItem("alanfal-favorites") || "[]"
-        );
-
-        if (!Array.isArray(favorites)) {
-            favorites = [];
-        }
-    } catch (error) {
-        favorites = [];
-    }
-
-    // Collect only the original catalog cards.
-    function getCatalogCards() {
-        return document.querySelectorAll(
-            "#science .book-card[data-book-id], " +
-            "#literature .book-card[data-book-id], " +
-            "#education .book-card[data-book-id], " +
-            "#student-corner .book-card[data-book-id], " +
-            "#pdf-books .book-card[data-book-id]"
-        );
-    }
-
-    // Add a favorite button to every book that has a book ID.
-    getCatalogCards().forEach(function (card) {
-        let button = card.querySelector("[data-favorite]");
-
-        if (!button) {
-            button = document.createElement("button");
-            button.type = "button";
             button.dataset.favorite = card.dataset.bookId;
-            button.className = "favorite-button";
-            button.style.marginTop = "10px";
-            button.style.cursor = "pointer";
-            card.appendChild(button);
-        }
 
-        button.setAttribute(
-            "aria-pressed",
-            String(favorites.includes(card.dataset.bookId))
-        );
-
-        button.textContent = favorites.includes(card.dataset.bookId)
-            ? "❤️ إزالة من المفضلة"
-            : "🤍 أضف إلى المفضلة";
-    });
+            updateFavoriteButton(
+                button,
+                favorites.includes(card.dataset.bookId)
+            );
+        });
+    }
 
     function renderFavorites() {
         if (!favoritesList) return;
 
         favoritesList.replaceChildren();
 
-        getCatalogCards().forEach(function (card) {
-            if (!favorites.includes(card.dataset.bookId)) return;
+        const cards = getCatalogCards();
+        const displayedIds = new Set();
+
+        cards.forEach(function (card) {
+            const bookId = card.dataset.bookId;
+
+            if (
+                !favorites.includes(bookId) ||
+                displayedIds.has(bookId)
+            ) {
+                return;
+            }
+
+            displayedIds.add(bookId);
 
             const copy = card.cloneNode(true);
+            copy.hidden = false;
 
             copy.querySelectorAll("[data-favorite]").forEach(
                 function (button) {
@@ -595,7 +575,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             );
 
-            copy.hidden = false;
             favoritesList.appendChild(copy);
         });
 
@@ -604,7 +583,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         if (placeholder) {
-            placeholder.hidden = favorites.length > 0;
+            placeholder.hidden = favoritesList.children.length > 0;
         }
 
         if (favoritesList.children.length === 0) {
@@ -613,21 +592,31 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // One click handler supports all current and dynamically added buttons.
-    document.addEventListener("click", function (event) {
-        const button = event.target.closest("[data-favorite]");
+    initializeFavoriteButtons();
 
-        if (!button || !document.body.contains(button)) return;
+    // One delegated handler supports every favorite button.
+    document.addEventListener("click", function (event) {
+        const target = event.target;
+
+        if (!(target instanceof Element)) return;
+
+        const button = target.closest("[data-favorite]");
+
+        if (!button) return;
 
         const bookCard = button.closest(".book-card");
 
-        // Ignore buttons inside copied favorite cards.
-        if (!bookCard || !bookCard.closest(
+        if (!bookCard) return;
+
+        // Only handle buttons on original catalog cards.
+        if (!bookCard.closest(
             "#science, #literature, #education, " +
             "#student-corner, #pdf-books"
-        )) return;
+        )) {
+            return;
+        }
 
-        const bookId = button.dataset.favorite;
+        const bookId = bookCard.dataset.bookId;
 
         if (!bookId) return;
 
@@ -639,33 +628,27 @@ document.addEventListener("DOMContentLoaded", function () {
             favorites.splice(index, 1);
         }
 
-        try {
-            localStorage.setItem(
-                "alanfal-favorites",
-                JSON.stringify(favorites)
-            );
-        } catch (error) {
+        const saved = saveStoredValue(
+            "alanfal-favorites",
+            JSON.stringify(favorites)
+        );
+
+        if (!saved) {
             alert(
-                "Favorites could not be saved in this browser."
+                "Favorites could not be saved in this browser. Please check browser storage settings."
             );
             return;
         }
 
-        // Update all buttons belonging to this book.
+        // Update every button belonging to the selected book.
         getCatalogCards().forEach(function (card) {
             if (card.dataset.bookId !== bookId) return;
 
             card.querySelectorAll("[data-favorite]").forEach(
                 function (favoriteButton) {
-                    const isFavorite = favorites.includes(bookId);
-
-                    favoriteButton.textContent = isFavorite
-                        ? "❤️ إزالة من المفضلة"
-                        : "🤍 أضف إلى المفضلة";
-
-                    favoriteButton.setAttribute(
-                        "aria-pressed",
-                        String(isFavorite)
+                    updateFavoriteButton(
+                        favoriteButton,
+                        favorites.includes(bookId)
                     );
                 }
             );
@@ -675,7 +658,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     renderFavorites();
-    // 7. Keep the Footer Year Updated
+
+
+    // ==========================================
+    // 8. FOOTER YEAR
+    // ==========================================
+
     const yearElements = document.querySelectorAll(
         "[data-current-year]"
     );
@@ -685,7 +673,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // 8. Avoid Following Empty Placeholder Links
+    // ==========================================
+    // 9. PREVENT EMPTY PLACEHOLDER LINKS
+    // ==========================================
+
     document.querySelectorAll('a[href="#"]').forEach(
         function (link) {
             link.addEventListener("click", function (event) {
