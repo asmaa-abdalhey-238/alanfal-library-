@@ -1,4 +1,3 @@
-
 /* ==========================================
    AL-ANFAL LIBRARY - MAIN STYLE SHEET
    Purple, Gold, Cream and White Theme
@@ -35,6 +34,7 @@ body {
     color: var(--text);
     line-height: 1.7;
     font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {
@@ -123,8 +123,7 @@ nav a.active {
 }
 
 nav a.logout-link,
-.main-nav a#logout-link,
-nav a:last-child.logout-link {
+.main-nav a#logout-link {
     background: var(--secondary);
     color: var(--white);
 }
@@ -167,8 +166,7 @@ h2::after {
     margin-top: 8px;
     border-radius: 5px;
     background: var(--gold);
-}
-
+   }
 /* 5. Library Banner */
 .library-banner {
     min-height: 300px;
@@ -183,9 +181,11 @@ h2::after {
     border-radius: var(--radius);
     color: var(--white);
     background:
-        linear-gradient(rgba(42, 20, 61, 0.65),
-                        rgba(42, 20, 61, 0.65)),
-        url("library-banner.png") center/cover no-repeat;
+        linear-gradient(
+            rgba(42, 20, 61, 0.65),
+            rgba(42, 20, 61, 0.65)
+        ),
+        url("../image/library-banner.png") center/cover no-repeat;
     box-shadow: var(--shadow);
 }
 
@@ -254,9 +254,8 @@ h2::after {
     color: var(--muted);
 }
 
-/* 8. Book Images */
+/* 8. General Images */
 .book-card img,
-.book-cover img,
 .book-image,
 .feature-card img {
     display: block;
@@ -267,15 +266,38 @@ h2::after {
     margin: 0 auto 15px;
 }
 
+/* Book Covers */
 .book-cover {
-    min-height: 160px;
+    min-height: 190px;
+    height: 290px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 64px;
-    background: var(--light-purple);
-    border-radius: 12px;
-    margin-bottom: 15px;
+    background: linear-gradient(
+        135deg,
+        #eee5fa,
+        #d8c7ed,
+        #f9f3e8
+    );
+    border-bottom: 4px solid #c4a45b;
+    overflow: hidden;
+}
+
+.book-cover img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+    padding: 10px;
+    margin: 0;
+    border-radius: 0;
+    transition: transform 0.35s ease;
+}
+
+.book-card:hover .book-cover img {
+    transform: scale(1.04);
 }
 
 .book-card .price,
@@ -313,8 +335,7 @@ input[type="submit"]:hover,
 .btn-gold {
     background: var(--gold);
     color: var(--primary);
-}
-
+                                }
 /* 10. Forms, Login and Create Account */
 form {
     width: 100%;
@@ -355,6 +376,7 @@ input[type="password"],
 input[type="tel"],
 input[type="number"],
 input[type="url"],
+input[type="search"],
 select,
 textarea {
     width: 100%;
@@ -502,8 +524,124 @@ hr {
     border-top: 1px solid var(--border);
     margin: 25px 0;
 }
+/* 16. Unified Book Card Design */
+.books-grid {
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 230px), 1fr)
+    );
+    gap: 24px;
+    align-items: stretch;
+}
 
-/* 16. Tablet and Mobile */
+.book-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(55, 35, 75, 0.09);
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+}
+
+.book-card .book-cover {
+    min-height: 190px;
+    height: 290px;
+    border-radius: 0;
+}
+
+#science .book-cover {
+    background: linear-gradient(135deg, #d8e9e2, #a9cbbb, #f4eee0);
+}
+
+#literature .book-cover {
+    background: linear-gradient(135deg, #f6dce6, #e8c2d4, #fff0dc);
+}
+
+#education .book-cover,
+#student-corner .book-cover {
+    background: linear-gradient(135deg, #dce8fa, #c4d2f0, #f5f0df);
+}
+
+#pdf-books .book-cover {
+    background: linear-gradient(135deg, #e8dcf7, #c8b4e6, #f8edda);
+}
+
+.book-card .book-info {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+    gap: 10px;
+    padding: 18px;
+}
+
+.book-card .book-info h3 {
+    margin: 0;
+    color: var(--primary);
+    line-height: 1.5;
+}
+
+.book-card .book-info p {
+    margin: 0;
+    line-height: 1.7;
+}
+
+.book-card .price {
+    font-weight: 700;
+    color: #7c6226;
+}
+
+.book-card .btn,
+.book-card .favorite-button,
+.book-card .reading-list-button,
+.book-card button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+    padding: 11px 14px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.book-card .btn {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.book-card .favorite-button {
+    background: #f8e8f0;
+    color: #70234b;
+}
+
+.book-card .reading-list-button {
+    background: #e5f1e9;
+    color: #245b3a;
+}
+
+.book-card .btn:hover,
+.book-card .favorite-button:hover,
+.book-card .reading-list-button:hover {
+    filter: brightness(0.94);
+}
+
+.book-card a:focus-visible,
+.book-card button:focus-visible {
+    outline: 3px solid #c4a45b;
+    outline-offset: 3px;
+   }
+/* 17. Tablet and Mobile */
 @media (max-width: 768px) {
     header {
         padding: 20px 12px;
@@ -546,11 +684,22 @@ hr {
         padding: 14px;
     }
 
+    .book-card {
+        padding: 0;
+    }
+
     .book-card img,
-    .book-cover img,
     .book-image,
     .feature-card img {
         height: 170px;
+    }
+
+    .book-card .book-cover {
+        height: 240px;
+    }
+
+    .book-card .book-cover img {
+        height: 100%;
     }
 
     .login-container,
@@ -559,6 +708,31 @@ hr {
     .register-container,
     .form-container {
         padding: 22px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .books-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .book-card .book-cover {
+        height: 205px;
+        min-height: 155px;
+        font-size: 54px;
+    }
+
+    .book-card .book-info {
+        padding: 12px;
+    }
+
+    .book-card .book-info h3 {
+        font-size: 0.92rem;
+    }
+
+    .book-card .price {
+        font-size: 16px;
     }
 }
 
@@ -578,27 +752,24 @@ hr {
     .cards-grid,
     .book-list,
     .services-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .book-card img,
-    .book-cover img,
-    .book-image,
-    .feature-card img {
-        height: 220px;
+    .book-card .book-cover {
+        height: 190px;
+    }
+
+    .login-container,
+    .login-box,
+    .account-container,
+    .register-container,
+    .form-container {
+        width: 94%;
+        padding: 18px 14px;
     }
 }
 
-/* =====================================
-   AL-ANFAL LIBRARY - DARK MODE
-===================================== */
-
-body {
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
-}
-
+/* 18. Dark Mode */
 body.dark-mode {
     --primary: #D8B9F5;
     --secondary: #C49BEA;
@@ -615,7 +786,6 @@ body.dark-mode {
     color: var(--text);
 }
 
-/* Headings and text */
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
@@ -629,7 +799,6 @@ body.dark-mode label {
     color: var(--text);
 }
 
-/* Navigation */
 body.dark-mode nav,
 body.dark-mode .main-nav {
     background: #241B2E;
@@ -647,7 +816,6 @@ body.dark-mode nav a.active {
     color: #F0C96A;
 }
 
-/* Cards and sections */
 body.dark-mode .card,
 body.dark-mode .book-card,
 body.dark-mode .feature-card,
@@ -664,7 +832,6 @@ body.dark-mode .free-books {
     border-color: #493654;
 }
 
-/* Inputs */
 body.dark-mode input,
 body.dark-mode textarea,
 body.dark-mode select {
@@ -678,23 +845,23 @@ body.dark-mode textarea::placeholder {
     color: #BBAAC9;
 }
 
-/* Book cover placeholders */
-body.dark-mode .book-cover {
-    background: #382744;
-}
-
-/* Comments */
+body.dark-mode .book-cover,
 body.dark-mode .comment {
     background: #382744;
-    color: #F4EDF9;
 }
 
-/* Keep banner image and overlay */
+body.dark-mode .book-card .book-info h3 {
+    color: #e2cff9;
+}
+
+body.dark-mode .book-card .price {
+    color: #f0d58c;
+}
+
 body.dark-mode .library-banner {
     color: #FFFFFF;
 }
 
-/* Footer */
 body.dark-mode footer {
     background: #100B16;
     color: #F4EDF9;
@@ -704,7 +871,7 @@ body.dark-mode footer p {
     color: #E0D3EB;
 }
 
-/* Theme toggle button */
+/* Theme Toggle Button */
 .theme-toggle {
     display: inline-flex;
     align-items: center;
@@ -729,273 +896,6 @@ body.dark-mode .theme-toggle {
     background: #382744;
     color: #F0C96A;
     border-color: #F0C96A;
-}
+       }
 
-/* ==========================================
-   AL-ANFAL LIBRARY - BOOK CARD REDESIGN
-========================================== */
-
-/* Book grid */
-.books-grid {
-    display: grid;
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(min(100%, 230px), 1fr)
-    );
-    gap: 24px;
-    align-items: stretch;
-}
-
-/* Individual book cards */
-.book-card {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    border: 1px solid #e8e1ef;
-    border-radius: 18px;
-    box-shadow: 0 5px 18px rgba(55, 35, 75, 0.09);
-    transition: transform 0.25s ease,
-                box-shadow 0.25s ease;
-}
-
-.book-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 28px rgba(55, 35, 75, 0.16);
-}
-
-/* Decorative book-cover area */
-.book-card .book-cover {
-    min-height: 190px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 76px;
-    background: linear-gradient(
-        135deg,
-        #eee5fa,
-        #d8c7ed,
-        #f9f3e8
-    );
-    border-bottom: 4px solid #c4a45b;
-}
-
-/* Different cover colors by category */
-#science .book-cover {
-    background: linear-gradient(135deg, #d8e9e2, #a9cbbb, #f4eee0);
-}
-
-#literature .book-cover {
-    background: linear-gradient(135deg, #f6dce6, #e8c2d4, #fff0dc);
-}
-
-#education .book-cover,
-#student-corner .book-cover {
-    background: linear-gradient(135deg, #dce8fa, #c4d2f0, #f5f0df);
-}
-
-#pdf-books .book-cover {
-    background: linear-gradient(135deg, #e8dcf7, #c8b4e6, #f8edda);
-}
-
-/* Book information */
-.book-card .book-info {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    flex: 1;
-    gap: 10px;
-    padding: 18px;
-}
-
-.book-card .book-info h3 {
-    margin: 0;
-    color: #43215f;
-    line-height: 1.5;
-}
-
-.book-card .book-info p {
-    margin: 0;
-    line-height: 1.7;
-}
-
-.book-card .price {
-    font-weight: 700;
-    color: #7c6226;
-}
-
-/* Buttons and links */
-.book-card .btn,
-.book-card .favorite-button,
-.book-card .reading-list-button {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 8px;
-    padding: 11px 14px;
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-    text-decoration: none;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-    transition: filter 0.2s ease;
-}
-
-.book-card .btn {
-    background: #43215f;
-    color: #ffffff;
-}
-
-.book-card .favorite-button {
-    background: #f8e8f0;
-    color: #70234b;
-}
-
-.book-card .reading-list-button {
-    background: #e5f1e9;
-    color: #245b3a;
-}
-
-.book-card .btn:hover,
-.book-card .favorite-button:hover,
-.book-card .reading-list-button:hover {
-    filter: brightness(0.94);
-}
-
-/* Keyboard accessibility */
-.book-card a:focus-visible,
-.book-card button:focus-visible {
-    outline: 3px solid #c4a45b;
-    outline-offset: 3px;
-}
-
-/* Dark mode */
-body.dark-mode .book-card {
-    background: #292333;
-    border-color: #494052;
-    color: #f5f0fa;
-}
-
-body.dark-mode .book-card .book-info h3 {
-    color: #e2cff9;
-}
-
-body.dark-mode .book-card .price {
-    color: #f0d58c;
-}
-
-/* Mobile spacing */
-@media (max-width: 480px) {
-    .books-grid {
-        gap: 16px;
-    }
-
-    .book-card .book-cover {
-        min-height: 155px;
-        font-size: 64px;
-    }
-
-    .book-card .book-info {
-        padding: 14px;
-    }
-}
-
-/* ===== Al-Anfal Library Book Covers ===== */
-
-.books-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 24px;
-  align-items: stretch;
-}
-
-.book-card {
-  overflow: hidden;
-  border-radius: 18px;
-  background: var(--card-bg, #ffffff);
-  border: 1px solid rgba(100, 75, 130, 0.14);
-  box-shadow: 0 5px 18px rgba(40, 25, 60, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.book-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(40, 25, 60, 0.16);
-}
-
-.book-cover {
-  width: 100%;
-  height: 290px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f0e8fa, #e5f1f7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.book-cover img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  padding: 10px;
-  transition: transform 0.35s ease;
-}
-
-.book-card:hover .book-cover img {
-  transform: scale(1.04);
-}
-
-.book-info {
-  padding: 18px;
-}
-
-.book-info h3 {
-  font-size: 1.05rem;
-  line-height: 1.5;
-  margin: 0 0 10px;
-}
-
-.book-info p {
-  line-height: 1.7;
-}
-
-.book-info .price {
-  font-weight: 700;
-  color: #7950a5;
-  margin: 12px 0;
-}
-
-.book-card .btn,
-.book-card button {
-  border-radius: 10px;
-  transition: opacity 0.2s ease;
-}
-
-.book-card .btn:hover,
-.book-card button:hover {
-  opacity: 0.88;
-}
-
-@media (max-width: 480px) {
-  .books-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .book-cover {
-    height: 205px;
-  }
-
-  .book-info {
-    padding: 12px;
-  }
-
-  .book-info h3 {
-    font-size: 0.92rem;
-  }
-}
 
