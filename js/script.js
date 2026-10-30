@@ -288,29 +288,62 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            comments.slice().reverse().forEach(function (comment) {
-                const article = document.createElement("article");
-                article.style.padding = "12px";
-                article.style.marginBottom = "10px";
-                article.style.borderRadius = "8px";
-                article.style.border = "1px solid #cccccc";
+            comments.slice().reverse().forEach(function (comment, reverseIndex) {
+    const article = document.createElement("article");
+    article.style.padding = "12px";
+    article.style.marginBottom = "10px";
+    article.style.borderRadius = "8px";
+    article.style.border = "1px solid #cccccc";
 
-                const name = document.createElement("h4");
-                name.textContent = comment.name;
+    const name = document.createElement("h4");
+    name.textContent = comment.name;
 
-                const date = document.createElement("small");
-                date.textContent = comment.date;
+    const date = document.createElement("small");
+    date.textContent = comment.date;
 
-                const message = document.createElement("p");
-                message.textContent = comment.comment;
+    const message = document.createElement("p");
+    message.textContent = comment.comment;
 
-                article.appendChild(name);
-                article.appendChild(date);
-                article.appendChild(message);
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "🗑️ Delete Comment";
+    deleteButton.type = "button";
+    deleteButton.dataset.deleteComment =
+        String(comments.length - 1 - reverseIndex);
 
-                commentsList.appendChild(article);
-            });
+    article.appendChild(name);
+    article.appendChild(date);
+    article.appendChild(message);
+    article.appendChild(deleteButton);
+
+    commentsList.appendChild(article);
+});
         }
+       // Delete saved comments
+document.addEventListener("click", function (event) {
+    const button = event.target.closest("[data-delete-comment]");
+
+    if (!button) return;
+
+    const index = Number(button.dataset.deleteComment);
+    const comments = getComments();
+
+    if (!Number.isInteger(index) || index < 0 || index >= comments.length) {
+        return;
+    }
+
+    if (!confirm("Are you sure you want to delete this comment?")) {
+        return;
+    }
+
+    comments.splice(index, 1);
+
+    if (!saveStoredValue(commentsKey, JSON.stringify(comments))) {
+        alert("The comment could not be deleted.");
+        return;
+    }
+
+    renderComments();
+});
 
         if (commentForm) {
             commentForm.addEventListener("submit", function (event) {
