@@ -1,182 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Al-Anfal Library - Create Account</title>
-
-    <!-- Link to CSS file -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+
     <!-- Al-Anfal Side Menu -->
-<button type="button" class="menu-open" id="menu-open"
-        aria-label="Open menu" aria-controls="side-menu">
-    ☰
-</button>
-
-<div class="menu-overlay" id="menu-overlay"></div>
-
-<aside class="side-menu" id="side-menu" aria-label="Main menu">
-    <div class="side-menu-header">
-        <span>📚 Al-Anfal Library</span>
-        <button type="button" id="menu-close" aria-label="Close menu">✕</button>
-    </div>
-
-    <a href="home.html">🏠 <span data-en="Home" data-ar="الرئيسية">Home</span></a>
-    <a href="books.html">📚 <span data-en="Books" data-ar="الكتب">Books</span></a>
-    <a href="books.html#references">📖 <span data-en="References" data-ar="المراجع">References</span></a>
-
-    <button type="button" class="side-menu-action" id="settings-open">
-        ⚙️ <span data-en="Settings" data-ar="الإعدادات">Settings</span>
+    <button type="button" class="menu-open" id="menu-open"
+            aria-label="Open menu" aria-controls="side-menu">
+        ☰
     </button>
 
-    <a href="contact.html">💌 <span data-en="Contact Us" data-ar="اتصل بنا">Contact Us</span></a>
-    <a href="index.html" class="side-logout">↪ <span data-en="Logout" data-ar="تسجيل الخروج">Logout</span></a>
-</aside>
+    <div class="menu-overlay" id="menu-overlay"></div>
 
-<!-- Settings Panel -->
-<div class="settings-overlay" id="settings-overlay">
-    <section class="settings-panel" role="dialog"
-             aria-modal="true" aria-labelledby="settings-title">
-        <div class="settings-heading">
-            <h2 id="settings-title">Settings | الإعدادات</h2>
-            <button type="button" id="settings-close" aria-label="Close settings">✕</button>
+    <aside class="side-menu" id="side-menu" aria-label="Main menu">
+
+        <div class="side-menu-header">
+            <span>📚 Al-Anfal Library</span>
+            <button type="button" id="menu-close" aria-label="Close menu">✕</button>
         </div>
 
-        <h3 data-en="Language" data-ar="اللغة">Language</h3>
-        <div class="settings-buttons">
-            <button type="button" id="language-en">English</button>
-            <button type="button" id="language-ar">العربية</button>
-        </div>
+        <a href="home.html">🏠 <span data-en="Home" data-ar="الرئيسية">Home</span></a>
+        <a href="books.html">📚 <span data-en="Books" data-ar="الكتب">Books</span></a>
+        <a href="books.html#references">📖 <span data-en="References" data-ar="المراجع">References</span></a>
 
-        <h3 data-en="Appearance" data-ar="المظهر">Appearance</h3>
-        <div class="settings-buttons">
-            <button type="button" id="settings-light">☀️ <span data-en="Light Mode" data-ar="الوضع النهاري">Light Mode</span></button>
-            <button type="button" id="settings-dark">🌙 <span data-en="Dark Mode" data-ar="الوضع الليلي">Dark Mode</span></button>
-        </div>
-    </section>
-</div>
+        <button type="button" class="side-menu-action" id="settings-open">
+            ⚙️ <span data-en="Settings" data-ar="الإعدادات">Settings</span>
+        </button>
+
+        <a href="contact.html">💌 <span data-en="Contact Us" data-ar="اتصل بنا">Contact Us</span></a>
+        <a href="index.html" class="side-logout">↪ <span data-en="Logout" data-ar="تسجيل الخروج">Logout</span></a>
+
+    </aside>
+
+    <!-- Settings Panel -->
+    <div class="settings-overlay" id="settings-overlay">
+
+        <section class="settings-panel" role="dialog"
+                 aria-modal="true" aria-labelledby="settings-title">
+
+            <div class="settings-heading">
+                <h2 id="settings-title"
+                    data-en="Settings" data-ar="الإعدادات">Settings</h2>
+
+                <button type="button" id="settings-close"
+                        aria-label="Close settings">✕</button>
+            </div>
+
+            <h3 data-en="Language" data-ar="اللغة">Language</h3>
+
+            <div class="settings-buttons">
+                <button type="button" id="language-en">English</button>
+                <button type="button" id="language-ar">العربية</button>
+            </div>
+
+            <h3 data-en="Appearance" data-ar="المظهر">Appearance</h3>
+
+            <div class="settings-buttons">
+                <button type="button" id="settings-light">
+                    ☀️ <span data-en="Light Mode" data-ar="الوضع النهاري">Light Mode</span>
+                </button>
+
+                <button type="button" id="settings-dark">
+                    🌙 <span data-en="Dark Mode" data-ar="الوضع الليلي">Dark Mode</span>
+                </button>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- Theme Button -->
     <button type="button" id="theme-toggle" class="theme-toggle">
         🌙 الوضع الليلي
     </button>
+
+    <!-- Header -->
     <header class="page-header">
-        <h1>Al-Anfal Library</h1>
-        <p>Your World of Reading and Knowledge</p>
+
+        <h1 data-en="Al-Anfal Library" data-ar="مكتبة الأنفال">
+            Al-Anfal Library
+        </h1>
+
+        <p data-en="Your World of Reading and Knowledge"
+           data-ar="عالمك للقراءة والمعرفة">
+            Your World of Reading and Knowledge
+        </p>
+
     </header>
 
     <main class="account-container">
 
         <section class="account-card">
 
-            <h2>Create Your Account</h2>
+            <h2 data-en="Create Your Account"
+                data-ar="إنشاء حساب جديد">
+                Create Your Account
+            </h2>
 
-            <p class="welcome-text">
+            <p class="welcome-text"
+               data-en="Join Al-Anfal Library and discover a world of knowledge."
+               data-ar="انضم إلى مكتبة الأنفال واكتشف عالماً من المعرفة.">
                 Join Al-Anfal Library and discover a world of knowledge.
             </p>
 
             <form action="#" method="post">
 
                 <div class="form-group">
-                    <label for="fullname">Full Name</label>
 
-                    <input
-                        type="text"
-                        id="fullname"
-                        name="fullname"
-                        placeholder="Enter your full name"
-                        autocomplete="name"
-                        required>
+                    <label for="fullname"
+                           data-en="Full Name" data-ar="الاسم الكامل">
+                        Full Name
+                    </label>
+
+                    <input type="text" id="fullname" name="fullname"
+                           placeholder="Enter your full name"
+                           data-placeholder-en="Enter your full name"
+                           data-placeholder-ar="أدخل اسمك الكامل"
+                           autocomplete="name" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email Address</label>
 
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Enter your email address"
-                        autocomplete="email"
-                        required>
+                    <label for="email"
+                           data-en="Email Address" data-ar="البريد الإلكتروني">
+                        Email Address
+                    </label>
+
+                    <input type="email" id="email" name="email"
+                           placeholder="Enter your email address"
+                           data-placeholder-en="Enter your email address"
+                           data-placeholder-ar="أدخل بريدك الإلكتروني"
+                           autocomplete="email" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="username">Username</label>
 
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        placeholder="Choose a username"
-                        autocomplete="username"
-                        required>
+                    <label for="username"
+                           data-en="Username" data-ar="اسم المستخدم">
+                        Username
+                    </label>
+
+                    <input type="text" id="username" name="username"
+                           placeholder="Choose a username"
+                           data-placeholder-en="Choose a username"
+                           data-placeholder-ar="اختر اسم مستخدم"
+                           autocomplete="username" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Password</label>
 
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Create a password"
-                        autocomplete="new-password"
-                        minlength="8"
-                        required>
+                    <label for="password"
+                           data-en="Password" data-ar="كلمة المرور">
+                        Password
+                    </label>
+
+                    <input type="password" id="password" name="password"
+                           placeholder="Create a password"
+                           data-placeholder-en="Create a password"
+                           data-placeholder-ar="أنشئ كلمة مرور"
+                           autocomplete="new-password"
+                           minlength="8" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
 
-                    <input
-                        type="password"
-                        id="confirm-password"
-                        name="confirm-password"
-                        placeholder="Confirm your password"
-                        autocomplete="new-password"
-                        minlength="8"
-                        required>
+                    <label for="confirm-password"
+                           data-en="Confirm Password"
+                           data-ar="تأكيد كلمة المرور">
+                        Confirm Password
+                    </label>
+
+                    <input type="password" id="confirm-password"
+                           name="confirm-password"
+                           placeholder="Confirm your password"
+                           data-placeholder-en="Confirm your password"
+                           data-placeholder-ar="أعد إدخال كلمة المرور"
+                           autocomplete="new-password"
+                           minlength="8" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="account-type">Account Type</label>
+
+                    <label for="account-type"
+                           data-en="Account Type" data-ar="نوع الحساب">
+                        Account Type
+                    </label>
 
                     <select id="account-type" name="account-type" required>
-                        <option value="">Select account type</option>
-                        <option value="reader">Reader</option>
-                        <option value="student">Student</option>
+
+                        <option value=""
+                                data-en="Select account type"
+                                data-ar="اختر نوع الحساب">
+                            Select account type
+                        </option>
+
+                        <option value="reader"
+                                data-en="Reader" data-ar="قارئ">
+                            Reader
+                        </option>
+
+                        <option value="student"
+                                data-en="Student" data-ar="طالب">
+                            Student
+                        </option>
+
                     </select>
                 </div>
 
                 <div class="terms">
-                    <input
-                        type="checkbox"
-                        id="terms"
-                        name="terms"
-                        required>
 
-                    <label for="terms">
+                    <input type="checkbox" id="terms"
+                           name="terms" required>
+
+                    <label for="terms"
+                           data-en="I agree to the terms and conditions."
+                           data-ar="أوافق على الشروط والأحكام.">
                         I agree to the terms and conditions.
                     </label>
+
                 </div>
 
-                <button type="submit" class="submit-button">
+                <button type="submit" class="submit-button"
+                        data-en="Create Account" data-ar="إنشاء الحساب">
                     Create Account
                 </button>
 
             </form>
 
             <p class="login-link">
-                Already have an account?
-                <a href="index.html">Login here</a>
+
+                <span data-en="Already have an account?"
+                      data-ar="لديك حساب بالفعل؟">
+                    Already have an account?
+                </span>
+
+                <a href="index.html"
+                   data-en="Login here" data-ar="سجّل الدخول هنا">
+                    Login here
+                </a>
+
             </p>
 
             <p class="home-link">
-                <a href="home.html">Back to Home</a>
+
+                <a href="home.html"
+                   data-en="Back to Home" data-ar="العودة للرئيسية">
+                    Back to Home
+                </a>
+
             </p>
 
         </section>
@@ -184,11 +261,15 @@
     </main>
 
     <footer class="page-footer">
-        <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
+
+        <p data-en="© 2026 Al-Anfal Library. All Rights Reserved."
+           data-ar="© 2026 مكتبة الأنفال. جميع الحقوق محفوظة.">
+            &copy; 2026 Al-Anfal Library. All Rights Reserved.
+        </p>
+
     </footer>
 
-<script src="js/script.js" defer></script>
+    <script src="js/script.js" defer></script>
 
 </body>
-
 </html>
