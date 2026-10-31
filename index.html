@@ -1,93 +1,295 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al-Anfal Library - Login</title>
+    <title>Al-Anfal Library - Home</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-    <body>    
-        <header class="login-header">
-    <div class="logo">📚</div>
-    <h1>Al-Anfal Library</h1>
-    <p>Your World of Reading and Knowledge</p>
-</header>
 
-<main class="login-container">
+<body>
 
-    <section class="login-card" id="login">
+    <!-- Al-Anfal Side Menu -->
+    <button type="button" class="menu-open" id="menu-open"
+            aria-label="Open menu" aria-controls="side-menu">
+        ☰
+    </button>
 
-        <div class="welcome-icon">💜</div>
+    <div class="menu-overlay" id="menu-overlay"></div>
 
-        <h2>Welcome Back!</h2>
-        <p class="description">
-            Login to your account and continue your reading journey.
-        </p>
-
-        <form action="home.html" method="get">
-
-            <div class="form-group">
-                <label for="login-email">Email Address</label>
-                <input
-                    type="email"
-                    id="login-email"
-                    name="email"
-                    placeholder="Enter your email"
-                    required>
-
-            </div>
-
-            <div class="form-group">
-                <label for="login-password">Password</label>
-                <input
-                    type="password"
-                    id="login-password"
-                    name="password"
-                    placeholder="Enter your password"
-                    required>
-                
-            </div>
-
-            <div class="forgot-link">
-                <a href="#forgot-password">Forgot your password?</a>
-            </div>
-
-            <button type="submit" class="login-button">
-                Login to Your Account
-            </button>
-
-        </form>
-
-        <div class="divider">
-            <span>OR</span>
+    <aside class="side-menu" id="side-menu" aria-label="Main menu">
+        <div class="side-menu-header">
+            <span>📚 Al-Anfal Library</span>
+            <button type="button" id="menu-close" aria-label="Close menu">✕</button>
         </div>
 
-        <div class="signup-section">
-            <p>New to Al-Anfal Library?</p>
-            <a href="create-account.html" class="signup-button">
-                Create a New Account
+        <a href="home.html">🏠 <span data-en="Home" data-ar="الرئيسية">Home</span></a>
+        <a href="books.html">📚 <span data-en="Books" data-ar="الكتب">Books</span></a>
+        <a href="books.html#references">📖 <span data-en="References" data-ar="المراجع">References</span></a>
+
+        <button type="button" class="side-menu-action" id="settings-open">
+            ⚙️ <span data-en="Settings" data-ar="الإعدادات">Settings</span>
+        </button>
+
+        <a href="contact.html">💌 <span data-en="Contact Us" data-ar="اتصل بنا">Contact Us</span></a>
+        <a href="index.html" class="side-logout">↪ <span data-en="Logout" data-ar="تسجيل الخروج">Logout</span></a>
+    </aside>
+
+    <!-- Settings Panel -->
+    <div class="settings-overlay" id="settings-overlay">
+        <section class="settings-panel" role="dialog"
+                 aria-modal="true" aria-labelledby="settings-title">
+
+            <div class="settings-heading">
+                <h2 id="settings-title" data-en="Settings" data-ar="الإعدادات">Settings</h2>
+                <button type="button" id="settings-close" aria-label="Close settings">✕</button>
+            </div>
+
+            <h3 data-en="Language" data-ar="اللغة">Language</h3>
+
+            <div class="settings-buttons">
+                <button type="button" id="language-en">English</button>
+                <button type="button" id="language-ar">العربية</button>
+            </div>
+
+            <h3 data-en="Appearance" data-ar="المظهر">Appearance</h3>
+
+            <div class="settings-buttons">
+                <button type="button" id="settings-light">
+                    ☀️ <span data-en="Light Mode" data-ar="الوضع النهاري">Light Mode</span>
+                </button>
+
+                <button type="button" id="settings-dark">
+                    🌙 <span data-en="Dark Mode" data-ar="الوضع الليلي">Dark Mode</span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1 data-en="Al-Anfal Library" data-ar="مكتبة الأنفال">Al-Anfal Library</h1>
+        <p data-en="Your World of Reading and Knowledge"
+           data-ar="عالمك للقراءة والمعرفة">
+            Your World of Reading and Knowledge
+        </p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="home.html" class="active"
+           data-en="Home" data-ar="الرئيسية">Home</a>
+
+        <a href="books.html"
+           data-en="Books" data-ar="الكتب">Books</a>
+
+        <a href="contact.html"
+           data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
+
+        <button type="button" id="theme-toggle" class="theme-toggle">
+            🌙 الوضع الليلي
+        </button>
+
+        <a href="index.html" class="logout-link"
+           data-en="Logout" data-ar="تسجيل الخروج">Logout</a>
+    </nav>
+
+    <main>
+
+        <!-- Library Banner -->
+        <section class="library-banner">
+
+            <h2 data-en="Welcome to Al-Anfal Library"
+                data-ar="مرحباً بكم في مكتبة الأنفال">
+                Welcome to Al-Anfal Library
+            </h2>
+
+            <p data-en="Discover a World of Books, Knowledge, Science and Imagination."
+               data-ar="اكتشفوا عالماً من الكتب والمعرفة والعلوم والخيال.">
+                Discover a World of Books, Knowledge,
+                Science and Imagination.
+            </p>
+
+            <a href="books.html" class="btn btn-gold"
+               data-en="Explore Our Books" data-ar="استكشف كتبنا">
+                Explore Our Books
             </a>
-        </div>
 
-    </section>
+        </section>
 
-    <section class="forgot-card" id="forgot-password">
-        <h3>Forgot Your Password?</h3>
-        <p>
-            Please contact the library administrator
-            for help resetting your password.
+        <!-- Introduction -->
+        <section class="section">
+
+            <h2 class="section-title"
+                data-en="About Our Library" data-ar="عن مكتبتنا">
+                About Our Library
+            </h2>
+
+            <p data-en="Al-Anfal Library is an electronic library that helps readers discover books and explore different subjects."
+               data-ar="مكتبة الأنفال مكتبة إلكترونية تساعد القراء على اكتشاف الكتب واستكشاف مختلف المجالات.">
+                Al-Anfal Library is an electronic library
+                that helps readers discover books and explore
+                different subjects.
+            </p>
+
+            <p data-en="Our goal is to make knowledge accessible and encourage everyone to enjoy reading."
+               data-ar="هدفنا هو إتاحة المعرفة للجميع وتشجيعهم على الاستمتاع بالقراءة.">
+                Our goal is to make knowledge accessible
+                and encourage everyone to enjoy reading.
+            </p>
+
+        </section>
+
+        <!-- Services -->
+        <section class="section">
+
+            <h2 class="section-title"
+                data-en="Our Services" data-ar="خدماتنا">
+                Our Services
+            </h2>
+
+            <div class="cards-grid">
+
+                <div class="info-card">
+                    <h3 data-en="Book Collection" data-ar="مجموعة الكتب">
+                        Book Collection
+                    </h3>
+
+                    <p data-en="Explore books from science, technology, literature and more."
+                       data-ar="استكشف كتباً في العلوم والتكنولوجيا والأدب وغيرها من المجالات.">
+                        Explore books from science,
+                        technology, literature and more.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3 data-en="Easy Access" data-ar="سهولة الوصول">
+                        Easy Access
+                    </h3>
+
+                    <p data-en="Browse the library content easily from your device."
+                       data-ar="تصفح محتويات المكتبة بسهولة من جهازك.">
+                        Browse the library content
+                        easily from your device.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3 data-en="Reader Feedback" data-ar="آراء القراء">
+                        Reader Feedback
+                    </h3>
+
+                    <p data-en="Share your comments and suggestions with our library."
+                       data-ar="شاركنا تعليقاتك واقتراحاتك لتطوير مكتبتنا.">
+                        Share your comments and suggestions
+                        with our library.
+                    </p>
+
+                    <a href="contact.html" class="btn"
+                       data-en="Contact Us" data-ar="اتصل بنا">
+                        Contact Us
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Featured Books -->
+        <section class="section">
+
+            <h2 class="section-title"
+                data-en="Explore Our Categories" data-ar="استكشف أقسامنا">
+                Explore Our Categories
+            </h2>
+
+            <div class="cards-grid">
+
+                <div class="book-card">
+                    <img src="images/statistics.jpg"
+                         alt="Statistics Book">
+
+                    <div class="book-info">
+                        <h3 data-en="Statistics" data-ar="الإحصاء">
+                            Statistics
+                        </h3>
+
+                        <p data-en="Discover books about statistics and data analysis."
+                           data-ar="اكتشف كتباً عن علم الإحصاء وتحليل البيانات.">
+                            Discover books about statistics
+                            and data analysis.
+                        </p>
+
+                        <a href="books.html" class="btn"
+                           data-en="View Books" data-ar="عرض الكتب">
+                            View Books
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <img src="images/computer.jpg"
+                         alt="Computer Science Book">
+
+                    <div class="book-info">
+                        <h3 data-en="Computer Science" data-ar="علوم الحاسوب">
+                            Computer Science
+                        </h3>
+
+                        <p data-en="Explore programming and computer technology."
+                           data-ar="استكشف البرمجة وتقنيات الحاسوب.">
+                            Explore programming and
+                            computer technology.
+                        </p>
+
+                        <a href="books.html" class="btn"
+                           data-en="View Books" data-ar="عرض الكتب">
+                            View Books
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <img src="images/novel.jpg"
+                         alt="Novels and Literature">
+
+                    <div class="book-info">
+                        <h3 data-en="Novels and Literature" data-ar="الروايات والأدب">
+                            Novels and Literature
+                        </h3>
+
+                        <p data-en="Enjoy stories, novels and wonderful adventures."
+                           data-ar="استمتع بالقصص والروايات والمغامرات الممتعة.">
+                            Enjoy stories, novels
+                            and wonderful adventures.
+                        </p>
+
+                        <a href="books.html" class="btn"
+                           data-en="View Books" data-ar="عرض الكتب">
+                            View Books
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p data-en="© 2026 Al-Anfal Library. All Rights Reserved."
+           data-ar="© 2026 مكتبة الأنفال. جميع الحقوق محفوظة.">
+            &copy; 2026 Al-Anfal Library. All Rights Reserved.
         </p>
-        <a href="#login">Back to Login</a>
-    </section>
 
-</main>
+        <p data-en="Your World of Reading and Knowledge"
+           data-ar="عالمك للقراءة والمعرفة">
+            Your World of Reading and Knowledge
+        </p>
+    </footer>
 
-<footer class="login-footer">
-    <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
-    <p>Read More. Learn More. Discover More.</p>
-</footer>
-
-<script src="js/script.js" defer></script>
+    <script src="js/script.js" defer></script>
 
 </body>
 </html>
+
