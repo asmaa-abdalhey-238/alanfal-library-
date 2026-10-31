@@ -12,6 +12,54 @@
 </head>
 
 <body>
+    <!-- Al-Anfal Side Menu -->
+<button type="button" class="menu-open" id="menu-open"
+        aria-label="Open menu" aria-controls="side-menu">
+    ☰
+</button>
+
+<div class="menu-overlay" id="menu-overlay"></div>
+
+<aside class="side-menu" id="side-menu" aria-label="Main menu">
+    <div class="side-menu-header">
+        <span>📚 Al-Anfal Library</span>
+        <button type="button" id="menu-close" aria-label="Close menu">✕</button>
+    </div>
+
+    <a href="home.html">🏠 <span data-en="Home" data-ar="الرئيسية">Home</span></a>
+    <a href="books.html">📚 <span data-en="Books" data-ar="الكتب">Books</span></a>
+    <a href="books.html#references">📖 <span data-en="References" data-ar="المراجع">References</span></a>
+
+    <button type="button" class="side-menu-action" id="settings-open">
+        ⚙️ <span data-en="Settings" data-ar="الإعدادات">Settings</span>
+    </button>
+
+    <a href="contact.html">💌 <span data-en="Contact Us" data-ar="اتصل بنا">Contact Us</span></a>
+    <a href="index.html" class="side-logout">↪ <span data-en="Logout" data-ar="تسجيل الخروج">Logout</span></a>
+</aside>
+
+<!-- Settings Panel -->
+<div class="settings-overlay" id="settings-overlay">
+    <section class="settings-panel" role="dialog"
+             aria-modal="true" aria-labelledby="settings-title">
+        <div class="settings-heading">
+            <h2 id="settings-title">Settings | الإعدادات</h2>
+            <button type="button" id="settings-close" aria-label="Close settings">✕</button>
+        </div>
+
+        <h3 data-en="Language" data-ar="اللغة">Language</h3>
+        <div class="settings-buttons">
+            <button type="button" id="language-en">English</button>
+            <button type="button" id="language-ar">العربية</button>
+        </div>
+
+        <h3 data-en="Appearance" data-ar="المظهر">Appearance</h3>
+        <div class="settings-buttons">
+            <button type="button" id="settings-light">☀️ <span data-en="Light Mode" data-ar="الوضع النهاري">Light Mode</span></button>
+            <button type="button" id="settings-dark">🌙 <span data-en="Dark Mode" data-ar="الوضع الليلي">Dark Mode</span></button>
+        </div>
+    </section>
+</div>
     <button type="button" id="theme-toggle" class="theme-toggle">
         🌙 الوضع الليلي
     </button>
