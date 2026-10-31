@@ -1,195 +1,326 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Al-Anfal Library - Contact Us</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-    <body>
-        <!-- Al-Anfal Side Menu -->
-<button type="button" class="menu-open" id="menu-open"
-        aria-label="Open menu" aria-controls="side-menu">
-    ☰
-</button>
 
-<div class="menu-overlay" id="menu-overlay"></div>
+<body>
 
-<aside class="side-menu" id="side-menu" aria-label="Main menu">
-    <div class="side-menu-header">
-        <span>📚 Al-Anfal Library</span>
-        <button type="button" id="menu-close" aria-label="Close menu">✕</button>
-    </div>
-
-    <a href="home.html">🏠 <span data-en="Home" data-ar="الرئيسية">Home</span></a>
-    <a href="books.html">📚 <span data-en="Books" data-ar="الكتب">Books</span></a>
-    <a href="books.html#references">📖 <span data-en="References" data-ar="المراجع">References</span></a>
-
-    <button type="button" class="side-menu-action" id="settings-open">
-        ⚙️ <span data-en="Settings" data-ar="الإعدادات">Settings</span>
+    <!-- Al-Anfal Side Menu -->
+    <button type="button" class="menu-open" id="menu-open"
+            aria-label="Open menu" aria-controls="side-menu">
+        ☰
     </button>
 
-    <a href="contact.html">💌 <span data-en="Contact Us" data-ar="اتصل بنا">Contact Us</span></a>
-    <a href="index.html" class="side-logout">↪ <span data-en="Logout" data-ar="تسجيل الخروج">Logout</span></a>
-</aside>
+    <div class="menu-overlay" id="menu-overlay"></div>
 
-<!-- Settings Panel -->
-<div class="settings-overlay" id="settings-overlay">
-    <section class="settings-panel" role="dialog"
-             aria-modal="true" aria-labelledby="settings-title">
-        <div class="settings-heading">
-            <h2 id="settings-title">Settings | الإعدادات</h2>
-            <button type="button" id="settings-close" aria-label="Close settings">✕</button>
+    <aside class="side-menu" id="side-menu" aria-label="Main menu">
+
+        <div class="side-menu-header">
+            <span>📚 Al-Anfal Library</span>
+            <button type="button" id="menu-close" aria-label="Close menu">✕</button>
         </div>
 
-        <h3 data-en="Language" data-ar="اللغة">Language</h3>
-        <div class="settings-buttons">
-            <button type="button" id="language-en">English</button>
-            <button type="button" id="language-ar">العربية</button>
-        </div>
+        <a href="home.html">🏠 <span data-en="Home" data-ar="الرئيسية">Home</span></a>
+        <a href="books.html">📚 <span data-en="Books" data-ar="الكتب">Books</span></a>
+        <a href="books.html#references">📖 <span data-en="References" data-ar="المراجع">References</span></a>
 
-        <h3 data-en="Appearance" data-ar="المظهر">Appearance</h3>
-        <div class="settings-buttons">
-            <button type="button" id="settings-light">☀️ <span data-en="Light Mode" data-ar="الوضع النهاري">Light Mode</span></button>
-            <button type="button" id="settings-dark">🌙 <span data-en="Dark Mode" data-ar="الوضع الليلي">Dark Mode</span></button>
-        </div>
-    </section>
-</div>
-        <header class="site-header">
-    <div class="site-logo">📚</div>
-    <h1>Al-Anfal Library</h1>
-    <p>Your World of Reading and Knowledge</p>
+        <button type="button" class="side-menu-action" id="settings-open">
+            ⚙️ <span data-en="Settings" data-ar="الإعدادات">Settings</span>
+        </button>
 
-    <nav class="main-nav">
-        <a href="home.html">Home</a>
-        <a href="books.html">Books</a>
-        <a href="contact.html" class="active">Contact Us</a>
-           <button type="button" id="theme-toggle" class="theme-toggle">
-        🌙 الوضع الليلي
-           </button>
-        <a href="index.html" class="logout-link">Logout ↪</a>
-    </nav>
-</header>
+        <a href="contact.html">💌 <span data-en="Contact Us" data-ar="اتصل بنا">Contact Us</span></a>
+        <a href="index.html" class="side-logout">↪ <span data-en="Logout" data-ar="تسجيل الخروج">Logout</span></a>
 
-<main class="contact-container">
+    </aside>
 
-    <div class="contact-heading">
-        <span class="contact-icon">💌</span>
-        <h2>Contact Us</h2>
-        <p>We would love to hear from you!</p>
+    <!-- Settings Panel -->
+    <div class="settings-overlay" id="settings-overlay">
+
+        <section class="settings-panel" role="dialog"
+                 aria-modal="true" aria-labelledby="settings-title">
+
+            <div class="settings-heading">
+                <h2 id="settings-title"
+                    data-en="Settings" data-ar="الإعدادات">Settings</h2>
+
+                <button type="button" id="settings-close"
+                        aria-label="Close settings">✕</button>
+            </div>
+
+            <h3 data-en="Language" data-ar="اللغة">Language</h3>
+
+            <div class="settings-buttons">
+                <button type="button" id="language-en">English</button>
+                <button type="button" id="language-ar">العربية</button>
+            </div>
+
+            <h3 data-en="Appearance" data-ar="المظهر">Appearance</h3>
+
+            <div class="settings-buttons">
+                <button type="button" id="settings-light">
+                    ☀️ <span data-en="Light Mode" data-ar="الوضع النهاري">Light Mode</span>
+                </button>
+
+                <button type="button" id="settings-dark">
+                    🌙 <span data-en="Dark Mode" data-ar="الوضع الليلي">Dark Mode</span>
+                </button>
+            </div>
+
+        </section>
     </div>
 
-    <div class="contact-grid">
+    <!-- Header -->
+    <header class="site-header">
 
-        <section class="contact-card">
-            <h3>📍 Contact Information</h3>
+        <div class="site-logo">📚</div>
 
-            <div class="contact-item">
-                <span class="contact-symbol">📍</span>
-                <div>
-                    <h4>Our Location</h4>
-                    <p>Wad Madani, Sudan</p>
-                </div>
-            </div>
+        <h1 data-en="Al-Anfal Library" data-ar="مكتبة الأنفال">
+            Al-Anfal Library
+        </h1>
 
-            <div class="contact-item">
-                <span class="contact-symbol">📞</span>
-                <div>
-                    <h4>Phone Number</h4>
-                    <p>
-                        <a href="tel:+249000000000">
-                            +249 000 000 000
-                        </a>
-                    </p>
-                </div>
-            </div>
+        <p data-en="Your World of Reading and Knowledge"
+           data-ar="عالمك للقراءة والمعرفة">
+            Your World of Reading and Knowledge
+        </p>
 
-            <div class="contact-item">
-                <span class="contact-symbol">✉️</span>
-                <div>
-                    <h4>Email Address</h4>
-                    <p>
-                        <a href="mailto:info@al-anfal-library.example">
-                            info@al-anfal-library.example
-                        </a>
-                    </p>
-                </div>
-            </div>
+        <nav class="main-nav">
 
-            <div class="contact-note">
-                Have a question or suggestion?
-                We are happy to hear from you!
-            </div>
-        </section>
+            <a href="home.html"
+               data-en="Home" data-ar="الرئيسية">Home</a>
 
-        <section class="contact-card comment-card">
-            <h3>💬 Send Us Your Comment</h3>
-            <p class="form-description">
-                Share your thoughts and suggestions with us.
+            <a href="books.html"
+               data-en="Books" data-ar="الكتب">Books</a>
+
+            <a href="contact.html" class="active"
+               data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
+
+            <button type="button" id="theme-toggle" class="theme-toggle">
+                🌙 الوضع الليلي
+            </button>
+
+            <a href="index.html" class="logout-link"
+               data-en="Logout ↪" data-ar="تسجيل الخروج ↪">
+                Logout ↪
+            </a>
+
+        </nav>
+    </header>
+
+    <main class="contact-container">
+
+        <!-- Contact Heading -->
+        <div class="contact-heading">
+
+            <span class="contact-icon">💌</span>
+
+            <h2 data-en="Contact Us" data-ar="اتصل بنا">
+                Contact Us
+            </h2>
+
+            <p data-en="We would love to hear from you!"
+               data-ar="يسعدنا أن نسمع آراءكم ومقترحاتكم!">
+                We would love to hear from you!
             </p>
 
-            <form action="#" method="post">
+        </div>
 
-                <div class="form-group">
-                    <label for="visitor-name">Full Name</label>
-                    <input
-                        type="text"
-                        id="visitor-name"
-                        name="full_name"
-                        placeholder="Enter your full name"
-                        required>
-                    
+        <div class="contact-grid">
+
+            <!-- Contact Information -->
+            <section class="contact-card">
+
+                <h3 data-en="📍 Contact Information"
+                    data-ar="📍 معلومات التواصل">
+                    📍 Contact Information
+                </h3>
+
+                <div class="contact-item">
+
+                    <span class="contact-symbol">📍</span>
+
+                    <div>
+                        <h4 data-en="Our Location" data-ar="موقعنا">
+                            Our Location
+                        </h4>
+
+                        <p data-en="Wad Madani, Sudan"
+                           data-ar="ود مدني، السودان">
+                            Wad Madani, Sudan
+                        </p>
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="visitor-email">Email Address</label>
-                    <input
-                        type="email"
-                        id="visitor-email"
-                        name="visitor_email"
-                        placeholder="Enter your email"
-                        required>
-                    
+                <div class="contact-item">
+
+                    <span class="contact-symbol">📞</span>
+
+                    <div>
+                        <h4 data-en="Phone Number" data-ar="رقم الهاتف">
+                            Phone Number
+                        </h4>
+
+                        <p>
+                            <a href="tel:+249000000000">
+                                +249 000 000 000
+                            </a>
+                        </p>
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="comment">Your Comment</label>
-                    <textarea
-                        id="comment"
-                        name="comment"
-                        rows="5"
-                        placeholder="Write your comment here..."
-                        required>
-                    </textarea>
+                <div class="contact-item">
+
+                    <span class="contact-symbol">✉️</span>
+
+                    <div>
+                        <h4 data-en="Email Address"
+                            data-ar="البريد الإلكتروني">
+                            Email Address
+                        </h4>
+
+                        <p>
+                            <a href="mailto:info@al-anfal-library.example">
+                                info@al-anfal-library.example
+                            </a>
+                        </p>
+                    </div>
+
                 </div>
 
-                <div class="contact-buttons">
-                    <button type="submit" class="contact-submit">
-                        Add Comment
-                    </button>
-
-                    <button type="reset" class="contact-reset">
-                        Clear Form
-                    </button>
+                <div class="contact-note"
+                     data-en="Have a question or suggestion? We are happy to hear from you!"
+                     data-ar="هل لديك سؤال أو اقتراح؟ يسعدنا استقبال رسالتك!">
+                    Have a question or suggestion?
+                    We are happy to hear from you!
                 </div>
 
-            </form>
-        </section>
+            </section>
 
-    </div>
+            <!-- Comment Form -->
+            <section class="contact-card comment-card">
 
-    <div class="back-home">
-        <a href="home.html">← Back to Home</a>
-    </div>
+                <h3 data-en="💬 Send Us Your Comment"
+                    data-ar="💬 أرسل لنا تعليقك">
+                    💬 Send Us Your Comment
+                </h3>
 
-</main>
+                <p class="form-description"
+                   data-en="Share your thoughts and suggestions with us."
+                   data-ar="شاركنا آراءك ومقترحاتك.">
+                    Share your thoughts and suggestions with us.
+                </p>
 
-<footer class="site-footer">
-    <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
-    <p>Read More. Learn More. Discover More. 💜</p>
-</footer>
- 
-<script src="js/script.js" defer></script>
+                <form action="#" method="post">
+
+                    <div class="form-group">
+
+                        <label for="visitor-name"
+                               data-en="Full Name" data-ar="الاسم الكامل">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="visitor-name"
+                            name="full_name"
+                            placeholder="Enter your full name"
+                            data-placeholder-en="Enter your full name"
+                            data-placeholder-ar="أدخل اسمك الكامل"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="visitor-email"
+                               data-en="Email Address"
+                               data-ar="البريد الإلكتروني">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="visitor-email"
+                            name="visitor_email"
+                            placeholder="Enter your email"
+                            data-placeholder-en="Enter your email"
+                            data-placeholder-ar="أدخل بريدك الإلكتروني"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="comment"
+                               data-en="Your Comment" data-ar="تعليقك">
+                            Your Comment
+                        </label>
+
+                        <textarea
+                            id="comment"
+                            name="comment"
+                            rows="5"
+                            placeholder="Write your comment here..."
+                            data-placeholder-en="Write your comment here..."
+                            data-placeholder-ar="اكتب تعليقك هنا..."
+                            required></textarea>
+
+                    </div>
+
+                    <div class="contact-buttons">
+
+                        <button type="submit" class="contact-submit"
+                                data-en="Add Comment" data-ar="إضافة التعليق">
+                            Add Comment
+                        </button>
+
+                        <button type="reset" class="contact-reset"
+                                data-en="Clear Form" data-ar="مسح النموذج">
+                            Clear Form
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+        <!-- Back to Home -->
+        <div class="back-home">
+
+            <a href="home.html"
+               data-en="← Back to Home" data-ar="← العودة إلى الرئيسية">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <p data-en="© 2026 Al-Anfal Library. All Rights Reserved."
+           data-ar="© 2026 مكتبة الأنفال. جميع الحقوق محفوظة.">
+            &copy; 2026 Al-Anfal Library. All Rights Reserved.
+        </p>
+
+        <p data-en="Read More. Learn More. Discover More. 💜"
+           data-ar="اقرأ أكثر. تعلّم أكثر. اكتشف أكثر. 💜">
+            Read More. Learn More. Discover More. 💜
+        </p>
+
+    </footer>
+
+    <script src="js/script.js" defer></script>
 
 </body>
 </html>
