@@ -905,7 +905,163 @@ document.addEventListener("click", function (event) {
             });
         }
     );
+       // ==========================================
+    // 11. SIDE MENU
+    // ==========================================
 
+    const sideMenu = document.getElementById("side-menu");
+    const menuOverlay = document.getElementById("menu-overlay");
+    const menuOpen = document.getElementById("menu-open");
+    const menuClose = document.getElementById("menu-close");
+
+    function closeSideMenu() {
+        if (sideMenu) sideMenu.classList.remove("open");
+        if (menuOverlay) menuOverlay.classList.remove("show");
+    }
+
+    if (menuOpen && sideMenu && menuOverlay) {
+        menuOpen.addEventListener("click", function () {
+            sideMenu.classList.add("open");
+            menuOverlay.classList.add("show");
+        });
+    }
+
+    if (menuClose) {
+        menuClose.addEventListener("click", closeSideMenu);
+    }
+
+    if (menuOverlay) {
+        menuOverlay.addEventListener("click", closeSideMenu);
+    }
+
+    // Close menu after selecting a link
+    if (sideMenu) {
+        sideMenu.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", closeSideMenu);
+        });
+    }
+
+
+    // ==========================================
+    // 12. SETTINGS PANEL
+    // ==========================================
+
+    const settingsOpen = document.getElementById("settings-open");
+    const settingsClose = document.getElementById("settings-close");
+    const settingsOverlay = document.getElementById("settings-overlay");
+
+    if (settingsOpen && settingsOverlay) {
+        settingsOpen.addEventListener("click", function () {
+            closeSideMenu();
+            settingsOverlay.classList.add("show");
+        });
+    }
+
+    if (settingsClose && settingsOverlay) {
+        settingsClose.addEventListener("click", function () {
+            settingsOverlay.classList.remove("show");
+        });
+    }
+
+    if (settingsOverlay) {
+        settingsOverlay.addEventListener("click", function (event) {
+            if (event.target === settingsOverlay) {
+                settingsOverlay.classList.remove("show");
+            }
+        });
+    }
+
+    // Close menus with Escape
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeSideMenu();
+
+            if (settingsOverlay) {
+                settingsOverlay.classList.remove("show");
+            }
+        }
+    });
+
+
+    // ==========================================
+    // 13. LANGUAGE SWITCH
+    // ==========================================
+
+    const languageButtons = {
+        en: document.getElementById("language-en"),
+        ar: document.getElementById("language-ar")
+    };
+
+    function applyLanguage(language) {
+        const selectedLanguage = language === "ar" ? "ar" : "en";
+
+        document.documentElement.lang = selectedLanguage;
+        document.documentElement.dir =
+            selectedLanguage === "ar" ? "rtl" : "ltr";
+
+        // Translate elements carrying data-en and data-ar.
+        document.querySelectorAll("[data-en][data-ar]").forEach(
+            function (element) {
+                element.textContent =
+                    element.getAttribute(
+                        selectedLanguage === "ar" ? "data-ar" : "data-en"
+                    );
+            }
+        );
+
+        try {
+            localStorage.setItem("alanfal-language", selectedLanguage);
+        } catch (error) {
+            // Continue even if browser storage is unavailable.
+        }
+    }
+
+    let savedLanguage = "en";
+
+    try {
+        savedLanguage =
+            localStorage.getItem("alanfal-language") || "en";
+    } catch (error) {
+        savedLanguage = "en";
+    }
+
+    applyLanguage(savedLanguage);
+
+    if (languageButtons.en) {
+        languageButtons.en.addEventListener("click", function () {
+            applyLanguage("en");
+        });
+    }
+
+    if (languageButtons.ar) {
+        languageButtons.ar.addEventListener("click", function () {
+            applyLanguage("ar");
+        });
+    }
+
+
+    // ==========================================
+    // 14. THEME SETTINGS BUTTONS
+    // ==========================================
+
+    const settingsLight = document.getElementById("settings-light");
+    const settingsDark = document.getElementById("settings-dark");
+
+    if (settingsLight) {
+        settingsLight.addEventListener("click", function () {
+            saveStoredValue("alanfal-theme", "light");
+            manualTheme = true;
+            applyTheme("light");
+        });
+    }
+
+    if (settingsDark) {
+        settingsDark.addEventListener("click", function () {
+            saveStoredValue("alanfal-theme", "dark");
+            manualTheme = true;
+            applyTheme("dark");
+        });
+           }
     console.log(
         "Al-Anfal Library JavaScript loaded successfully."
     );
