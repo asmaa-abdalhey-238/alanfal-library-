@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al-Anfal Library - Home</title>
+    <title>Al-Anfal Library - Login</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -95,6 +95,70 @@
     </nav>
 
     <main>
+        <!-- Login Section -->
+<section class="section login-section">
+    <div class="info-card login-card">
+
+        <h2 class="section-title"
+            data-en="Welcome Back"
+            data-ar="مرحباً بعودتك">
+            Welcome Back
+        </h2>
+
+        <p data-en="Login to access Al-Anfal Library"
+           data-ar="سجّل دخولك للوصول إلى مكتبة الأنفال">
+            Login to access Al-Anfal Library
+        </p>
+
+        <form action="login.php" method="POST">
+
+            <label for="login-username"
+                   data-en="Username or Email"
+                   data-ar="اسم المستخدم أو البريد الإلكتروني">
+                Username or Email
+            </label>
+
+            <input
+                type="text"
+                id="login-username"
+                name="username"
+                placeholder="Enter username or email"
+                required>
+
+            <label for="login-password"
+                   data-en="Password"
+                   data-ar="كلمة المرور">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="login-password"
+                name="password"
+                placeholder="Enter your password"
+                required>
+
+            <button type="submit" class="btn">
+                Login
+            </button>
+
+        </form>
+
+        <p>
+            <span data-en="Don't have an account?"
+                  data-ar="ليس لديك حساب؟">
+                Don't have an account?
+            </span>
+
+            <a href="create-account.html"
+               data-en="Create Account"
+               data-ar="إنشاء حساب">
+                Create Account
+            </a>
+        </p>
+
+    </div>
+</section>
 
         <!-- Library Banner -->
         <section class="library-banner">
