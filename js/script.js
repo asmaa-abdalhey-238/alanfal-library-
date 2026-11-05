@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem(key, value);
             return true;
         } catch (error) {
+            console.error("Storage error:", error);
             return false;
         }
     }
@@ -51,11 +52,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================
-    // 2. AUTOMATIC DARK AND LIGHT MODE
+    // 2. DARK AND LIGHT MODE
     // ==========================================
 
     const themeButton = document.getElementById("theme-toggle");
     const savedTheme = getStoredValue("alanfal-theme", null);
+
+    let manualTheme =
+        savedTheme === "dark" || savedTheme === "light";
 
     function isNightTime() {
         const hour = new Date().getHours();
@@ -63,21 +67,36 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function applyTheme(theme) {
-        const isDark = theme === "dark";
+        const selectedTheme = theme === "dark" ? "dark" : "light";
 
-        document.body.classList.toggle("dark-mode", isDark);
+        document.body.classList.toggle(
+            "dark-mode",
+            selectedTheme === "dark"
+        );
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            selectedTheme
+        );
 
         if (themeButton) {
-            themeButton.textContent = isDark
-                ? "☀️ الوضع النهاري"
-                : "🌙 الوضع الليلي";
+            const language = getStoredValue("alanfal-language", "en");
 
-            themeButton.setAttribute("aria-pressed", String(isDark));
+            const label = themeButton.querySelector("span");
+
+            if (label) {
+                label.textContent =
+                    selectedTheme === "dark"
+                        ? (language === "ar" ? "الوضع النهاري" : "Light Mode")
+                        : (language === "ar" ? "الوضع الليلي" : "Dark Mode");
+            } else {
+                themeButton.textContent =
+                    selectedTheme === "dark"
+                        ? "☀️ Light Mode"
+                        : "🌙 Dark Mode";
+            }
         }
     }
-
-    let manualTheme =
-        savedTheme === "dark" || savedTheme === "light";
 
     applyTheme(
         manualTheme
@@ -92,14 +111,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     ? "light"
                     : "dark";
 
-            saveStoredValue("alanfal-theme", nextTheme);
-            manualTheme = true;
+            if (saveStoredValue("alanfal-theme", nextTheme)) {
+                manualTheme = true;
+            }
+
             applyTheme(nextTheme);
         });
     }
 
-    // Automatically change the theme according to time
-    // unless the visitor has chosen a theme manually.
     setInterval(function () {
         if (!manualTheme) {
             applyTheme(isNightTime() ? "dark" : "light");
@@ -111,9 +130,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // 3. GENERAL FORM VALIDATION
     // ==========================================
 
-    const forms = document.querySelectorAll("form");
+    document.querySelectorAll("form").forEach(function (form) {
 
-    forms.forEach(function (form) {
         form.querySelectorAll("[required]").forEach(function (field) {
             function clearFieldMessage() {
                 field.setCustomValidity("");
@@ -126,19 +144,18 @@ document.addEventListener("DOMContentLoaded", function () {
         form.addEventListener("submit", function (event) {
             let formIsValid = true;
 
-            const requiredFields = form.querySelectorAll("[required]");
-
-            requiredFields.forEach(function (field) {
+            form.querySelectorAll("[required]").forEach(function (field) {
                 field.setCustomValidity("");
 
-                if (field.type === "checkbox") {
-                    if (!field.checked) {
-                        formIsValid = false;
-                        field.setCustomValidity(
-                            "Please accept the required terms."
-                        );
-                    }
-                } else if (!field.value.trim()) {
+                if (field.type === "checkbox" && !field.checked) {
+                    formIsValid = false;
+                    field.setCustomValidity(
+                        "Please accept the required terms."
+                    );
+                } else if (
+                    field.type !== "checkbox" &&
+                    !field.value.trim()
+                ) {
                     formIsValid = false;
                     field.setCustomValidity(
                         "Please fill in this field."
@@ -155,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================
-    // 4. CREATE ACCOUNT FORM
+    // 4. CREATE ACCOUNT PASSWORD VALIDATION
     // ==========================================
 
     const confirmPasswordInput =
@@ -165,7 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("password");
 
     if (confirmPasswordInput && passwordInput) {
-        const accountForm = confirmPasswordInput.closest("form");
 
         function validatePasswords() {
             confirmPasswordInput.setCustomValidity("");
@@ -183,6 +199,8 @@ document.addEventListener("DOMContentLoaded", function () {
         passwordInput.addEventListener("input", validatePasswords);
         confirmPasswordInput.addEventListener("input", validatePasswords);
 
+        const accountForm = confirmPasswordInput.closest("form");
+
         if (accountForm) {
             accountForm.addEventListener("submit", function (event) {
                 validatePasswords();
@@ -190,18 +208,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!accountForm.checkValidity()) {
                     event.preventDefault();
                     accountForm.reportValidity();
-                    return;
                 }
 
-                // This is front-end validation only.
-                // Actual account creation requires a backend.
-                event.preventDefault();
-
-                showMessage(
-                    accountForm,
-                    "Your information passed validation. Actual account creation requires the backend stage.",
-                    false
-                );
+                // Valid forms can continue to their PHP backend.
             });
         }
     }
@@ -211,11 +220,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // 5. CONTACT FORM AND SAVED COMMENTS
     // ==========================================
 
-    const commentInput = document.getElementById("comment");
-    const visitorNameInput = document.getElementById("visitor-name");
-    const visitorEmailInput = document.getElementById("visitor-email");
+    const commentInput =
+        document.getElementById("comment");
+
+    const visitorNameInput =
+        document.getElementById("visitor-name") ||
+        document.getElementById("comment-name") ||
+        document.querySelector('input[name="fullname"]');
+
+    const visitorEmailInput =
+        document.getElementById("visitor-email") ||
+        document.getElementById("comment-email") ||
+        document.querySelector('input[name="email"]');
 
     if (commentInput && visitorNameInput && visitorEmailInput) {
+
         const commentForm = commentInput.closest("form");
         const commentsKey = "alanfal-comments";
 
@@ -289,64 +308,76 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             comments.slice().reverse().forEach(function (comment, reverseIndex) {
-    const article = document.createElement("article");
-    article.style.padding = "12px";
-    article.style.marginBottom = "10px";
-    article.style.borderRadius = "8px";
-    article.style.border = "1px solid #cccccc";
+                const article = document.createElement("article");
+                article.style.padding = "12px";
+                article.style.marginBottom = "10px";
+                article.style.borderRadius = "8px";
+                article.style.border = "1px solid #cccccc";
 
-    const name = document.createElement("h4");
-    name.textContent = comment.name;
+                const name = document.createElement("h4");
+                name.textContent = comment.name;
 
-    const date = document.createElement("small");
-    date.textContent = comment.date;
+                const date = document.createElement("small");
+                date.textContent = comment.date;
 
-    const message = document.createElement("p");
-    message.textContent = comment.comment;
+                const message = document.createElement("p");
+                message.textContent = comment.comment;
 
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "🗑️ Delete Comment";
-    deleteButton.type = "button";
-    deleteButton.dataset.deleteComment =
-        String(comments.length - 1 - reverseIndex);
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "🗑️ Delete Comment";
+                deleteButton.type = "button";
+                deleteButton.dataset.deleteComment =
+                    String(comments.length - 1 - reverseIndex);
 
-    article.appendChild(name);
-    article.appendChild(date);
-    article.appendChild(message);
-    article.appendChild(deleteButton);
-
-    commentsList.appendChild(article);
-});
+                article.append(name, date, message, deleteButton);
+                commentsList.appendChild(article);
+            });
         }
-       // Delete saved comments
-document.addEventListener("click", function (event) {
-    const button = event.target.closest("[data-delete-comment]");
 
-    if (!button) return;
+        document.addEventListener("click", function (event) {
+            const target = event.target;
 
-    const index = Number(button.dataset.deleteComment);
-    const comments = getComments();
+            if (!(target instanceof Element)) return;
 
-    if (!Number.isInteger(index) || index < 0 || index >= comments.length) {
-        return;
-    }
+            const button = target.closest("[data-delete-comment]");
+            if (!button) return;
 
-    if (!confirm("Are you sure you want to delete this comment?")) {
-        return;
-    }
+            const index = Number(button.dataset.deleteComment);
+            const comments = getComments();
 
-    comments.splice(index, 1);
+            if (
+                !Number.isInteger(index) ||
+                index < 0 ||
+                index >= comments.length
+            ) {
+                return;
+            }
 
-    if (!saveStoredValue(commentsKey, JSON.stringify(comments))) {
-        alert("The comment could not be deleted.");
-        return;
-    }
+            if (!confirm("Are you sure you want to delete this comment?")) {
+                return;
+            }
 
-    renderComments();
-});
+            comments.splice(index, 1);
+
+            if (!saveStoredValue(commentsKey, JSON.stringify(comments))) {
+                alert("The comment could not be deleted.");
+                return;
+            }
+
+            renderComments();
+        });
 
         if (commentForm) {
             commentForm.addEventListener("submit", function (event) {
+
+                // If a PHP endpoint is configured, let the browser submit
+                // the form to the server instead of saving only locally.
+                const formAction = commentForm.getAttribute("action") || "";
+
+                if (formAction.toLowerCase().endsWith(".php")) {
+                    return;
+                }
+
                 event.preventDefault();
 
                 const name = visitorNameInput.value.trim();
@@ -450,9 +481,7 @@ document.addEventListener("click", function (event) {
 
             card.hidden = !matches;
 
-            if (matches) {
-                visibleCount++;
-            }
+            if (matches) visibleCount++;
         });
 
         bookSections.forEach(function (section) {
@@ -489,7 +518,7 @@ document.addEventListener("click", function (event) {
 
 
     // ==========================================
-    // 7. FAVORITES - ALL BOOK CARDS
+    // 7. FAVORITES
     // ==========================================
 
     const favoritesList = document.getElementById("favorites-list");
@@ -501,14 +530,11 @@ document.addEventListener("click", function (event) {
             getStoredValue("alanfal-favorites", "[]")
         );
 
-        if (!Array.isArray(favorites)) {
-            favorites = [];
-        }
+        if (!Array.isArray(favorites)) favorites = [];
     } catch (error) {
         favorites = [];
     }
 
-    // Find all book cards, including cards without a book ID.
     function getCatalogCards() {
         const cards = document.querySelectorAll(
             "#science .book-card, " +
@@ -530,11 +556,9 @@ document.addEventListener("click", function (event) {
                     .replace(/[^a-z0-9]+/g, "-")
                     .replace(/^-|-$/g, "");
 
-                card.dataset.bookId =
-                    slug || "book-" + (index + 1);
+                card.dataset.bookId = slug || "book-" + (index + 1);
             }
 
-            // Ensure each existing favorite button uses the card ID.
             card.querySelectorAll("[data-favorite]").forEach(
                 function (button) {
                     button.dataset.favorite = card.dataset.bookId;
@@ -546,16 +570,17 @@ document.addEventListener("click", function (event) {
     }
 
     function updateFavoriteButton(button, isFavorite) {
+        const language = getStoredValue("alanfal-language", "en");
+
         button.textContent = isFavorite
-            ? "❤️ إزالة من المفضلة"
-            : "🤍 أضف إلى المفضلة";
+            ? (language === "ar" ? "❤️ إزالة من المفضلة" : "❤️ Remove Favorite")
+            : (language === "ar" ? "🤍 أضف إلى المفضلة" : "🤍 Add to Favorites");
 
         button.setAttribute("aria-pressed", String(isFavorite));
         button.type = "button";
         button.classList.add("favorite-button");
     }
 
-    // Create a favorite button for every book card.
     function initializeFavoriteButtons() {
         getCatalogCards().forEach(function (card) {
             let button = card.querySelector("[data-favorite]");
@@ -566,7 +591,6 @@ document.addEventListener("click", function (event) {
                 button.className = "favorite-button";
                 button.style.marginTop = "10px";
                 button.style.cursor = "pointer";
-
                 card.appendChild(button);
             }
 
@@ -602,11 +626,11 @@ document.addEventListener("click", function (event) {
             const copy = card.cloneNode(true);
             copy.hidden = false;
 
-            copy.querySelectorAll("[data-favorite]").forEach(
-                function (button) {
-                    button.remove();
-                }
-            );
+            copy.querySelectorAll(
+                "[data-favorite], [data-reading-list]"
+            ).forEach(function (button) {
+                button.remove();
+            });
 
             favoritesList.appendChild(copy);
         });
@@ -620,28 +644,28 @@ document.addEventListener("click", function (event) {
         }
 
         if (favoritesList.children.length === 0) {
+            const language = getStoredValue("alanfal-language", "en");
+
             favoritesList.textContent =
-                "You have no favorite books yet. Add a book using the favorite button.";
+                language === "ar"
+                    ? "لا توجد كتب في المفضلة حتى الآن. أضف كتاباً باستخدام زر المفضلة."
+                    : "You have no favorite books yet. Add a book using the favorite button.";
         }
     }
 
     initializeFavoriteButtons();
 
-    // One delegated handler supports every favorite button.
     document.addEventListener("click", function (event) {
         const target = event.target;
 
         if (!(target instanceof Element)) return;
 
         const button = target.closest("[data-favorite]");
-
         if (!button) return;
 
         const bookCard = button.closest(".book-card");
-
         if (!bookCard) return;
 
-        // Only handle buttons on original catalog cards.
         if (!bookCard.closest(
             "#science, #literature, #education, " +
             "#student-corner, #pdf-books"
@@ -650,7 +674,6 @@ document.addEventListener("click", function (event) {
         }
 
         const bookId = bookCard.dataset.bookId;
-
         if (!bookId) return;
 
         const index = favorites.indexOf(bookId);
@@ -661,19 +684,14 @@ document.addEventListener("click", function (event) {
             favorites.splice(index, 1);
         }
 
-        const saved = saveStoredValue(
+        if (!saveStoredValue(
             "alanfal-favorites",
             JSON.stringify(favorites)
-        );
-
-        if (!saved) {
-            alert(
-                "Favorites could not be saved in this browser. Please check browser storage settings."
-            );
+        )) {
+            alert("Favorites could not be saved in this browser.");
             return;
         }
 
-        // Update every button belonging to the selected book.
         getCatalogCards().forEach(function (card) {
             if (card.dataset.bookId !== bookId) return;
 
@@ -691,7 +709,8 @@ document.addEventListener("click", function (event) {
     });
 
     renderFavorites();
-   
+
+
     // ==========================================
     // 8. MY READING LIST
     // ==========================================
@@ -706,9 +725,7 @@ document.addEventListener("click", function (event) {
             getStoredValue(readingKey, "[]")
         );
 
-        if (!Array.isArray(readingList)) {
-            readingList = [];
-        }
+        if (!Array.isArray(readingList)) readingList = [];
     } catch (error) {
         readingList = [];
     }
@@ -737,10 +754,11 @@ document.addEventListener("click", function (event) {
             button.classList.add("reading-list-button");
 
             const added = readingList.includes(card.dataset.bookId);
+            const language = getStoredValue("alanfal-language", "en");
 
             button.textContent = added
-                ? "✅ في قائمة القراءة"
-                : "📖 أضف إلى قائمة القراءة";
+                ? (language === "ar" ? "✅ في قائمة القراءة" : "✅ In Reading List")
+                : (language === "ar" ? "📖 أضف إلى قائمة القراءة" : "📖 Add to Reading List");
 
             button.setAttribute("aria-pressed", String(added));
         });
@@ -794,7 +812,14 @@ document.addEventListener("click", function (event) {
 
             const removeButton = document.createElement("button");
             removeButton.type = "button";
-            removeButton.textContent = "🗑️ إزالة من قائمة القراءة";
+
+            const language = getStoredValue("alanfal-language", "en");
+
+            removeButton.textContent =
+                language === "ar"
+                    ? "🗑️ إزالة من قائمة القراءة"
+                    : "🗑️ Remove from Reading List";
+
             removeButton.dataset.removeReading = bookId;
             removeButton.style.marginTop = "10px";
             removeButton.style.cursor = "pointer";
@@ -805,17 +830,25 @@ document.addEventListener("click", function (event) {
 
         if (count === 0) {
             const emptyMessage = document.createElement("p");
+            const language = getStoredValue("alanfal-language", "en");
+
             emptyMessage.textContent =
-                "Your reading list is empty. Choose a book and click Add to Reading List.";
+                language === "ar"
+                    ? "قائمة القراءة فارغة. اختر كتاباً وأضفه إلى القائمة."
+                    : "Your reading list is empty. Choose a book and click Add to Reading List.";
+
             listContainer.appendChild(emptyMessage);
         }
 
         const heading = readingSection.querySelector("h2");
 
         if (heading) {
+            const language = getStoredValue("alanfal-language", "en");
+
             heading.textContent =
-                "7. My Reading List | قائمة القراءة (" +
-                count + ")";
+                language === "ar"
+                    ? "قائمة القراءة (" + count + ")"
+                    : "My Reading List (" + count + ")";
         }
     }
 
@@ -828,7 +861,6 @@ document.addEventListener("click", function (event) {
 
         if (addButton) {
             const bookId = addButton.dataset.readingList;
-
             if (!bookId) return;
 
             if (readingList.includes(bookId)) {
@@ -842,9 +874,7 @@ document.addEventListener("click", function (event) {
             }
 
             if (!saveReadingList()) {
-                alert(
-                    "The reading list could not be saved in this browser."
-                );
+                alert("The reading list could not be saved.");
                 return;
             }
 
@@ -853,9 +883,7 @@ document.addEventListener("click", function (event) {
             return;
         }
 
-        const removeButton = target.closest(
-            "[data-remove-reading]"
-        );
+        const removeButton = target.closest("[data-remove-reading]");
 
         if (removeButton) {
             const bookId = removeButton.dataset.removeReading;
@@ -867,9 +895,7 @@ document.addEventListener("click", function (event) {
             );
 
             if (!saveReadingList()) {
-                alert(
-                    "The reading list could not be saved in this browser."
-                );
+                alert("The reading list could not be saved.");
                 return;
             }
 
@@ -885,13 +911,12 @@ document.addEventListener("click", function (event) {
     // ==========================================
     // 9. FOOTER YEAR
     // ==========================================
-    const yearElements = document.querySelectorAll(
-        "[data-current-year]"
-    );
 
-    yearElements.forEach(function (element) {
-        element.textContent = new Date().getFullYear();
-    });
+    document.querySelectorAll("[data-current-year]").forEach(
+        function (element) {
+            element.textContent = new Date().getFullYear();
+        }
+    );
 
 
     // ==========================================
@@ -905,7 +930,9 @@ document.addEventListener("click", function (event) {
             });
         }
     );
-       // ==========================================
+
+
+    // ==========================================
     // 11. SIDE MENU
     // ==========================================
 
@@ -934,7 +961,6 @@ document.addEventListener("click", function (event) {
         menuOverlay.addEventListener("click", closeSideMenu);
     }
 
-    // Close menu after selecting a link
     if (sideMenu) {
         sideMenu.querySelectorAll("a").forEach(function (link) {
             link.addEventListener("click", closeSideMenu);
@@ -971,7 +997,6 @@ document.addEventListener("click", function (event) {
         });
     }
 
-    // Close menus with Escape
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
             closeSideMenu();
@@ -999,31 +1024,42 @@ document.addEventListener("click", function (event) {
         document.documentElement.dir =
             selectedLanguage === "ar" ? "rtl" : "ltr";
 
-        // Translate elements carrying data-en and data-ar.
         document.querySelectorAll("[data-en][data-ar]").forEach(
             function (element) {
-                element.textContent =
-                    element.getAttribute(
-                        selectedLanguage === "ar" ? "data-ar" : "data-en"
-                    );
+                // Do not overwrite nested spans, icons, or other elements.
+                if (element.children.length === 0) {
+                    element.textContent =
+                        element.getAttribute(
+                            selectedLanguage === "ar"
+                                ? "data-ar"
+                                : "data-en"
+                        );
+                }
             }
         );
 
-        try {
-            localStorage.setItem("alanfal-language", selectedLanguage);
-        } catch (error) {
-            // Continue even if browser storage is unavailable.
-        }
+        document.querySelectorAll(
+            "[data-placeholder-en][data-placeholder-ar]"
+        ).forEach(function (element) {
+            element.placeholder =
+                selectedLanguage === "ar"
+                    ? element.getAttribute("data-placeholder-ar")
+                    : element.getAttribute("data-placeholder-en");
+        });
+
+        saveStoredValue("alanfal-language", selectedLanguage);
+
+        // Refresh dynamic buttons and lists in the selected language.
+        initializeFavoriteButtons();
+        renderFavorites();
+        initializeReadingButtons();
+        renderReadingList();
+        applyTheme(
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
     }
 
-    let savedLanguage = "en";
-
-    try {
-        savedLanguage =
-            localStorage.getItem("alanfal-language") || "en";
-    } catch (error) {
-        savedLanguage = "en";
-    }
+    const savedLanguage = getStoredValue("alanfal-language", "en");
 
     applyLanguage(savedLanguage);
 
@@ -1049,20 +1085,29 @@ document.addEventListener("click", function (event) {
 
     if (settingsLight) {
         settingsLight.addEventListener("click", function () {
-            saveStoredValue("alanfal-theme", "light");
             manualTheme = true;
+            saveStoredValue("alanfal-theme", "light");
             applyTheme("light");
         });
     }
 
     if (settingsDark) {
         settingsDark.addEventListener("click", function () {
-            saveStoredValue("alanfal-theme", "dark");
             manualTheme = true;
+            saveStoredValue("alanfal-theme", "dark");
             applyTheme("dark");
         });
-           }
+    }
+
+
+    // ==========================================
+    // 15. FINAL MESSAGE
+    // ==========================================
+
     console.log(
         "Al-Anfal Library JavaScript loaded successfully."
     );
+
 });
+
+            
