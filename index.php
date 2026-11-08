@@ -1,3 +1,13 @@
+
+<?php
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: home.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -39,7 +49,7 @@
                     Login to access Al-Anfal Library
                 </p>
 
-                <form action="home.html" method="GET">
+                <form action="login.php" method="POST">
 
                     <label for="login-username"
                            data-en="Username or Email"
@@ -79,12 +89,30 @@
                         Don't have an account?
                     </span>
 
-                    <a href="create-account.html"
+                    <a href="create-account.php"
                        data-en="Create Account"
                        data-ar="إنشاء حساب">
                         Create Account
                     </a>
                 </p>
+
+                <?php if (isset($_GET['error'])): ?>
+                    <p style="color:red;">
+                        <?php
+                        if ($_GET['error'] === 'invalid') {
+                            echo "Invalid username or password.";
+                        } elseif ($_GET['error'] === 'empty') {
+                            echo "Please enter your username and password.";
+                        }
+                        ?>
+                    </p>
+                <?php endif; ?>
+
+                <?php if (isset($_GET['registered'])): ?>
+                    <p style="color:green;">
+                        Account created successfully. Please login.
+                    </p>
+                <?php endif; ?>
 
             </div>
 
@@ -109,4 +137,3 @@
 
 </body>
 </html>
-
