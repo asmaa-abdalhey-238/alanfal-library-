@@ -1,3 +1,13 @@
+
+<?php
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: home.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -26,16 +36,16 @@
             <button type="button" id="menu-close" aria-label="Close menu">✕</button>
         </div>
 
-        <a href="home.html">🏠 <span data-en="Home" data-ar="الرئيسية">Home</span></a>
-        <a href="books.html">📚 <span data-en="Books" data-ar="الكتب">Books</span></a>
-        <a href="books.html#references">📖 <span data-en="References" data-ar="المراجع">References</span></a>
+        <a href="home.php">🏠 <span data-en="Home" data-ar="الرئيسية">Home</span></a>
+        <a href="books.php">📚 <span data-en="Books" data-ar="الكتب">Books</span></a>
+        <a href="books.php#references">📖 <span data-en="References" data-ar="المراجع">References</span></a>
 
         <button type="button" class="side-menu-action" id="settings-open">
             ⚙️ <span data-en="Settings" data-ar="الإعدادات">Settings</span>
         </button>
 
-        <a href="contact.html">💌 <span data-en="Contact Us" data-ar="اتصل بنا">Contact Us</span></a>
-        <a href="index.html" class="side-logout">↪ <span data-en="Logout" data-ar="تسجيل الخروج">Logout</span></a>
+        <a href="contact.php">💌 <span data-en="Contact Us" data-ar="اتصل بنا">Contact Us</span></a>
+        <a href="logout.php" class="side-logout">↪ <span data-en="Logout" data-ar="تسجيل الخروج">Logout</span></a>
 
     </aside>
 
@@ -240,7 +250,7 @@
                     Already have an account?
                 </span>
 
-                <a href="index.html"
+                <a href="index.php"
                    data-en="Login here" data-ar="سجّل الدخول هنا">
                     Login here
                 </a>
@@ -249,7 +259,7 @@
 
             <p class="home-link">
 
-                <a href="home.html"
+                <a href="home.php"
                    data-en="Back to Home" data-ar="العودة للرئيسية">
                     Back to Home
                 </a>
