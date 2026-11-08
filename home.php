@@ -1,3 +1,13 @@
+
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +20,7 @@
 </head>
 
 <body>
+
     <!-- Al-Anfal Side Menu -->
 <button type="button" class="menu-open" id="menu-open"
         aria-label="Open menu" aria-controls="side-menu">
@@ -24,16 +35,16 @@
         <button type="button" id="menu-close" aria-label="Close menu">✕</button>
     </div>
 
-    <a href="home.html">🏠 <span data-en="Home" data-ar="الرئيسية">Home</span></a>
-    <a href="books.html">📚 <span data-en="Books" data-ar="الكتب">Books</span></a>
-    <a href="books.html#references">📖 <span data-en="References" data-ar="المراجع">References</span></a>
+    <a href="home.php">🏠 <span data-en="Home" data-ar="الرئيسية">Home</span></a>
+    <a href="books.php">📚 <span data-en="Books" data-ar="الكتب">Books</span></a>
+    <a href="books.php#references">📖 <span data-en="References" data-ar="المراجع">References</span></a>
 
     <button type="button" class="side-menu-action" id="settings-open">
         ⚙️ <span data-en="Settings" data-ar="الإعدادات">Settings</span>
     </button>
 
-    <a href="contact.html">💌 <span data-en="Contact Us" data-ar="اتصل بنا">Contact Us</span></a>
-    <a href="index.html" class="side-logout">↪ <span data-en="Logout" data-ar="تسجيل الخروج">Logout</span></a>
+    <a href="contact.php">💌 <span data-en="Contact Us" data-ar="اتصل بنا">Contact Us</span></a>
+    <a href="logout.php" class="side-logout">↪ <span data-en="Logout" data-ar="تسجيل الخروج">Logout</span></a>
 </aside>
 
 <!-- Settings Panel -->
@@ -65,32 +76,32 @@
     </header>
 
     <nav>
-        <a href="home.html" class="active">Home</a>
-        <a href="books.html">Books</a>
-        <a href="contact.html">Contact Us</a>
-           <button type="button" id="theme-toggle" class="theme-toggle">
-    🌙 <span data-en="Dark Mode" data-ar="الوضع الليلي">Dark Mode</span>
-           </button>
-        <a href="index.html" class="logout-link">Logout</a>
+        <a href="home.php" class="active">Home</a>
+        <a href="books.php">Books</a>
+        <a href="contact.php">Contact Us</a>
+        <button type="button" id="theme-toggle" class="theme-toggle">
+            🌙 <span data-en="Dark Mode" data-ar="الوضع الليلي">Dark Mode</span>
+        </button>
+        <a href="logout.php" class="logout-link">Logout</a>
     </nav>
 
     <main>
 
         <!-- Library Banner -->
-<section class="library-banner">
+        <section class="library-banner">
 
-    <h2>Welcome to Al-Anfal Library</h2>
+            <h2>Welcome to Al-Anfal Library</h2>
 
-    <p>
-        Discover a World of Books, Knowledge,
-        Science and Imagination.
-    </p>
+            <p>
+                Discover a World of Books, Knowledge,
+                Science and Imagination.
+            </p>
 
-    <a href="books.html" class="btn btn-gold">
-        Explore Our Books
-    </a>
+            <a href="books.php" class="btn btn-gold">
+                Explore Our Books
+            </a>
 
-</section>
+        </section>
 
         <!-- Introduction -->
         <section class="section">
@@ -137,7 +148,7 @@
                         with our library.
                     </p>
 
-                    <a href="contact.html" class="btn">
+                    <a href="contact.php" class="btn">
                         Contact Us
                     </a>
                 </div>
@@ -162,7 +173,7 @@
                             Discover books about statistics
                             and data analysis.
                         </p>
-                        <a href="books.html" class="btn">
+                        <a href="books.php" class="btn">
                             View Books
                         </a>
                     </div>
@@ -172,7 +183,6 @@
                     <img
                         src="images/computer.jpg"
                         alt="Computer Science Book">
-                    
 
                     <div class="book-info">
                         <h3>Computer Science</h3>
@@ -180,7 +190,7 @@
                             Explore programming and
                             computer technology.
                         </p>
-                        <a href="books.html" class="btn">
+                        <a href="books.php" class="btn">
                             View Books
                         </a>
                     </div>
@@ -190,7 +200,6 @@
                     <img
                         src="images/novel.jpg"
                         alt="Novels and Literature">
-                    
 
                     <div class="book-info">
                         <h3>Novels and Literature</h3>
@@ -198,7 +207,7 @@
                             Enjoy stories, novels
                             and wonderful adventures.
                         </p>
-                        <a href="books.html" class="btn">
+                        <a href="books.php" class="btn">
                             View Books
                         </a>
                     </div>
@@ -213,7 +222,7 @@
         <p>&copy; 2026 Al-Anfal Library. All Rights Reserved.</p>
         <p>Your World of Reading and Knowledge</p>
     </footer>
- 
+
 <script src="js/script.js" defer></script>
 
 </body>
